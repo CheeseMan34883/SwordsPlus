@@ -128,9 +128,6 @@ public class ExcimerLaserTileEntity extends LockableLootTileEntity implements IT
 		if(level.isClientSide()) {
             return;
 		}
-		if (getRecipe() == null) {
-			System.out.println("Recipe is not found");
-		}
 		BlockState state = level.getBlockState(getBlockPos());
         if (state.getValue(BlockStateProperties.POWERED) != counter > 0) {
             level.setBlock(getBlockPos(), state.setValue(BlockStateProperties.POWERED, counter > 0),

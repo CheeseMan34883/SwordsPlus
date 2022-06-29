@@ -22,42 +22,42 @@ public class BlockInit {
 	public static final RegistryObject<Block> BRASS_BLOCK = BLOCKS.register("brass_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 6f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> ALUMINUM_BLOCK = BLOCKS.register("aluminum_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 6f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> CARBON_STEEL_BLOCK = BLOCKS.register("carbon_steel_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 9f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(3).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> BRONZE_BLOCK = BLOCKS.register("bronze_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 6f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> COPPER_BLOCK = BLOCKS.register("copper_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 6f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> TIN_BLOCK = BLOCKS.register("tin_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 6f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> TITANIUM_BLOCK = BLOCKS.register("titanium_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f, 9f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(3).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 
 	public static final RegistryObject<Block> VANADIUM_BLOCK = BLOCKS.register("vanadium_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(15f, 90f)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(4).sound(SoundType.METAL)
-					.requiresCorrectToolForDrops()))));
+					.requiresCorrectToolForDrops()));
 	
 	public static final RegistryObject<Block> EXCIMER_LASER = BLOCKS.register("excimer_laser", () -> new ExcimerLaser());
 					

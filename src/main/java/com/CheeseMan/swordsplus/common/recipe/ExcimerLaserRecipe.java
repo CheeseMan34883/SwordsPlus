@@ -20,6 +20,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
+import java.util.Arrays;
+
 
 public class ExcimerLaserRecipe implements IRecipe<ExcimerLaserTileEntity>{
 	
@@ -78,7 +80,7 @@ public class ExcimerLaserRecipe implements IRecipe<ExcimerLaserTileEntity>{
 	}
 	
 	private boolean testInputs(ExcimerLaserTileEntity tileEntity, Ingredient input) {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 1; i <= 2; i++) {
 			if (input.test(tileEntity.getItem(i)))
 				return true;
 		}

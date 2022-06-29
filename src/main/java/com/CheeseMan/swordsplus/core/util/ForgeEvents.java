@@ -19,7 +19,7 @@ public class ForgeEvents {
 			Trumpet.stop(event);
 			
 		}
-		System.out.println(event.getSound().getLocation().equals(ModSoundEvents.FANFARE.get().getLocation()));
+		//System.out.println(event.getSound().getLocation().equals(ModSoundEvents.FANFARE.get().getLocation()));
 		
 	}
 }
