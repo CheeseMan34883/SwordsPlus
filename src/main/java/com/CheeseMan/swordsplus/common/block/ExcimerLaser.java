@@ -43,7 +43,7 @@ public class ExcimerLaser extends Block {
 	
 	public ExcimerLaser() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f, 25f).harvestLevel(2)
-				.sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops());
+				.sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(BlockStateProperties.POWERED, false));
 		
 

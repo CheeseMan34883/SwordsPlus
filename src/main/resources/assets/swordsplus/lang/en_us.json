@@ -41,5 +41,7 @@
 	"block.swordsplus.vanadium_ore": "Vanadium Ore",
 	"block.swordsplus.vanadium_block": "Vanadium Block",
 	
-	"itemGroup.swordsplus": "Swords+"
+	"itemGroup.swordsplus": "Swords+",
+
+	"tooltip.swordsplus.battery.energy": "Energy: %s/%d"
 }
