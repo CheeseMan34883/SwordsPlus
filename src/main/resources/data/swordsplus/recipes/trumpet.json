@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" B ",
+		"SBB",
+		" BB"
+	],
+	"key": {
+		"B": {
+			"item": "swordsplus:brass_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+		}
+	},
+	
+	"result": {
+		"item": "swordsplus:trumpet",
+		"count": 1
+	}
+}

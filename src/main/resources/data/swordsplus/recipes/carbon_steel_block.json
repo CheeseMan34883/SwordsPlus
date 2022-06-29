@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"CCC",
+		"CCC",
+		"CCC"
+	],
+	"key": {
+		"C": {
+			"item": "swordsplus:carbon_steel_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:carbon_steel_block",
+		"count": 1
+	}
+}

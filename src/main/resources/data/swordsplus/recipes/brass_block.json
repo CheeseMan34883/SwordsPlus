@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"BBB",
+		"BBB",
+		"BBB"
+	],
+	"key": {
+		"B": {
+			"item": "swordsplus:brass_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:brass_block",
+		"count": 1
+	}
+}

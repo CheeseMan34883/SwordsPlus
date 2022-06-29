@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"AAA",
+		"AAA",
+		"AAA"
+	],
+	"key": {
+		"A": {
+			"item": "swordsplus:aluminum_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:aluminum_block",
+		"count": 1
+	}
+}

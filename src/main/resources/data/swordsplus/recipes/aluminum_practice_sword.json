@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"A",
+		"A",
+		"H"
+	],
+	"key": {
+		"A": {
+			"item": "swordsplus:aluminum_ingot"
+		},
+		"H": {
+			"item": "swordsplus:iron_handle"
+		}
+	},
+	
+	"result": {
+		"item": "swordsplus:aluminum_practice_sword",
+		"count": 1
+	}
+}

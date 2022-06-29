@@ -1,0 +1,26 @@
+modLoader="javafml" 
+loaderVersion="[36,)" 
+license="All rights reserved"
+[[mods]] 
+modId="swordsplus" 
+version="1.0" 
+displayName="Swords+" 
+logoFile="swordsplus.png" 
+credits="CheeseMan: Head Coder | Thanks to all the people who helped with textures!" 
+description='''
+This incredible mod adds a new fighting style to Minecraft by implementing several new swords and related weapons!
+It is a relatively small mod but packs a lot of creativity which makes it an enjoyable experience.
+Mod will be showcased on YT by Tag34883 aka CheeseMan's YouTube! https://www.youtube.com/channel/UCizWiKTr7BHGuhR3TnkquNQ  
+'''
+[[dependencies.swordsplus]] 
+    modId="forge" 
+    mandatory=true     
+    versionRange="[36,)" 
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.swordsplus]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.18.2)"
+    ordering="NONE"
+    side="BOTH"

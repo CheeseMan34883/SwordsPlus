@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"VVV",
+		"VVV",
+		"VVV"
+	],
+	"key": {
+		"V": {
+			"item": "swordsplus:vanadium_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:vanadium_block",
+		"count": 1
+	}
+}

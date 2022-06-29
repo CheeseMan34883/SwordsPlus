@@ -1,0 +1,22 @@
+
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"T",
+		"T",
+		"S"
+	],
+	"key": {
+		"T": {
+			"item": "swordsplus:copper_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+		}
+	},
+	
+	"result": {
+		"item": "swordsplus:copper_sword",
+		"count": 1
+	}
+}

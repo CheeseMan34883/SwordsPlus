@@ -1,0 +1,27 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" N ",
+		"QSQ",
+		" I "
+	],
+	"key": {
+		"Q": {
+			"item": "swordsplus:qcarbon"
+		},
+		"S": {
+			"item": "minecraft:elytra"
+		},
+		"N": {
+			"item": "minecraft:netherite_ingot"
+		},
+		"I": {
+			"item": "swordsplus:iron_handle"
+		}
+	},
+	
+	"result": {
+		"item": "swordsplus:rapid_sword",
+		"count": 1
+	}
+}

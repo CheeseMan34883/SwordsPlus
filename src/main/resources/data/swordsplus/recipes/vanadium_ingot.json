@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"   ",
+		"VVC",
+		"CVV"
+	],
+	"key": {
+		"V": {
+			"item": "swordsplus:raw_vanadium"
+		},
+		"C": {
+			"item": "swordsplus:copper_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:vanadium_ingot",
+		"count": 1
+	}
+}

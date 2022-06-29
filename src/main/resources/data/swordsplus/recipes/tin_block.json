@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"TTT",
+		"TTT",
+		"TTT"
+	],
+	"key": {
+		"T": {
+			"item": "swordsplus:tin_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:tin_block",
+		"count": 1
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"TTC",
+		"AI ",
+		"AVC"
+	],
+	"key": {
+		"A": {
+			"item": "swordsplus:aluminum_ingot"
+		},
+		"T": {
+			"item": "swordsplus:titanium_ingot"
+		},
+		"I": {
+			"item": "swordsplus:tin_ingot"
+		},
+		"V": {
+			"item": "swordsplus:vanadium_ingot"
+		},
+		"C": {
+			"item": "swordsplus:carbon_steel_ingot"
+		}
+	},
+	"result": {
+		"item": "swordsplus:excimer_laser",
+		"count": 1
+	}
+}

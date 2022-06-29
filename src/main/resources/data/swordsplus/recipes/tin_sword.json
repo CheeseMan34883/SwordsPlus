@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"T",
+		"T",
+		"S"
+	],
+	"key": {
+		"T": {
+			"item": "swordsplus:tin_ingot"
+		},
+		"S": {
+			"item": "minecraft:stick"
+		}
+	},
+	
+	"result": {
+		"item": "swordsplus:tin_sword",
+		"count": 1
+	}
+}

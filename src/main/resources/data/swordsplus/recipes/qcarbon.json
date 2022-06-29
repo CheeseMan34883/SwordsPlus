@@ -1,0 +1,24 @@
+{
+	"type": "swordsplus:excimer_laser_recipe",
+	"input": {
+		"item": "minecraft:diamond"
+	},
+	"input1": {
+		"item": "swordsplus:carbon_steel_ingot"
+	},
+	"output": {
+		"item": "swordsplus:qcarbon",
+		"count": 1
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

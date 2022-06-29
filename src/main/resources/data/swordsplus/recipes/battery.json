@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"A ",
+		"R ",
+		"P "
+	],
+	"key": {
+		"A": {
+			"item": "swordsplus:aluminum_ingot"
+		},
+		"R": {
+			"item": "minecraft:redstone_block"
+		},
+		"P": {
+			"item": "minecraft:paper"
+		}
+		
+	},
+	"result": {
+		"item": "swordsplus:battery",
+		"count": 1
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"fanfare": {
+		"category": "blocks",
+		"subtitle": "swordsplus.fanfare",
+		"sounds": [
+			"swordsplus:fanfare"
+		]	
+	}
+}
