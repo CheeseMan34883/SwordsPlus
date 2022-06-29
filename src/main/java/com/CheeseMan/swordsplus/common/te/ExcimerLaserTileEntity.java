@@ -207,7 +207,7 @@ public class ExcimerLaserTileEntity extends LockableLootTileEntity implements IT
 	* executed when the recipe is finished, use to shring the input and set the output
 	*/
 	private void finishWork(ExcimerLaserRecipe recipe){
-	    for(int i =1;i<2;i++){
+	    for(int i =1;i<= 2;i++){
 	        getItem(i).shrink(1);
 	    }
 	    if(getItem(3).isEmpty())
