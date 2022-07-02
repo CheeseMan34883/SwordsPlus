@@ -51,7 +51,7 @@ public class ExcimerLaserContainer extends Container {
 
 		// Player Hotbar
 		for (int col = 0; col < 9; col++) {
-			this.addSlot(new Slot(playerInv, col, 8 + col * 18, 142));
+			this.addSlot(new Slot(playerInv, col, 8 + col * 18, 144));
 		}
 		this.addDataSlots(this.array);
 	}

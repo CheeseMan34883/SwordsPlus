@@ -23,7 +23,7 @@ public class ExcimerLaserScreen extends ContainerScreen<ExcimerLaserContainer> {
 
 		this.leftPos = 0;
 		this.topPos = 0;
-		this.imageWidth = 175;
+		this.imageWidth = 176;
 		this.imageHeight = 168;
 
 	}
@@ -44,7 +44,7 @@ public class ExcimerLaserScreen extends ContainerScreen<ExcimerLaserContainer> {
 		int y = (this.height - this.imageHeight) / 2;
 		this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		if(menu.isPowered()){
-			this.blit(matrixStack, x + 38, y + 29, 0, 177, (int)(109*menu.getCounterPercentage()), 17);
+			this.blit(matrixStack, x + 38, y + 29, 0, 177, (int)(93*menu.getCounterPercentage()), 17);
 		}
 		int fuelGaugeHeight = (int)(67*menu.getCounterPercentage());
         if(menu.getFuelCounterPercentage() > 0)
