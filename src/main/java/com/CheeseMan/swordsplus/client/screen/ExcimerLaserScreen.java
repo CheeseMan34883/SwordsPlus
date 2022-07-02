@@ -44,11 +44,14 @@ public class ExcimerLaserScreen extends ContainerScreen<ExcimerLaserContainer> {
 		int y = (this.height - this.imageHeight) / 2;
 		this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		if(menu.isPowered()){
-			this.blit(matrixStack, x + 38, y + 29, 0, 177, (int)(93*menu.getCounterPercentage()), 17);
+			this.blit(matrixStack, x + 38, y + 29, 0, 170, (int)(93d*menu.getCounterPercentage()), 17);
 		}
+		//what is this?
+		/*
 		int fuelGaugeHeight = (int)(67*menu.getCounterPercentage());
         if(menu.getFuelCounterPercentage() > 0)
           this.blit(matrixStack, x + 146, y + 12 + 67 - fuelGaugeHeight, 178, 26, 23, fuelGaugeHeight);
+		 */
 	}
 
 	@Override
