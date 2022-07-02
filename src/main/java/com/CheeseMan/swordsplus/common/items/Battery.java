@@ -32,6 +32,7 @@ public class Battery extends Item{
 	public Battery() {
 		super(new Item.Properties()
 			.tab(SwordsPlusItemGroup.SWORDSPLUS)
+			.stacksTo(1)
 			.food(new Food.Builder().nutrition(0).saturationMod(1.0f)
 			.effect(() -> new EffectInstance(Effects.HARM, 100, 5), 1f)
 			.effect(() -> new EffectInstance(Effects.WITHER, 2000, 10), 1f)
