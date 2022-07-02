@@ -40,10 +40,6 @@ public class Battery extends Item{
 			.build()
 			));
 	}
-	@Override
-	public int getBurnTime(ItemStack itemStack, IRecipeType<?> recipeType) {
-		return 2000;
-	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> text, ITooltipFlag flag) {
@@ -67,7 +63,7 @@ public class Battery extends Item{
 		public CapabilityProvider(ItemStack stack, int initialCapacity){
 			this.stack = stack;
 			//now it can store 10000RF, can max transfer and receive 100RF/tick and has a custom initialEnergy
-			this.storage = new CustomEnergyStorage(10000, 100, 100, initialCapacity);
+			this.storage = new CustomEnergyStorage(10000, 100, 100, 10000);
 		}
 
 		//returns the cap like in a normal te
