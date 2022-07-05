@@ -12,6 +12,7 @@
 	"item.swordsplus.copper_sword": "Copper Sword",
 	"item.swordsplus.foil": "Foil",
 	"item.swordsplus.iron_handle": "Iron Handle",
+	"item.swordsplus.obi_spear": "Obi Spear",
 	"item.swordsplus.qcarbon": "Q-Carbon",
 	"item.swordsplus.rapid_sword": "Rapid Sword",
 	"item.swordsplus.raw_vanadium": "Raw Vanadium",
@@ -40,6 +41,9 @@
 	"block.swordsplus.titanium_ore": "Titanium Ore",
 	"block.swordsplus.vanadium_ore": "Vanadium Ore",
 	"block.swordsplus.vanadium_block": "Vanadium Block",
+	
+	"entity.swordsplus.obi_spear": "Obi Spear",
+	
 	
 	"itemGroup.swordsplus": "Swords+",
 

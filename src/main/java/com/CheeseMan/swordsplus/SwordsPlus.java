@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.CheeseMan.swordsplus.core.init.BlockInit;
 import com.CheeseMan.swordsplus.core.init.ContainerTypesInit;
+import com.CheeseMan.swordsplus.core.init.EntityTypesInit;
 import com.CheeseMan.swordsplus.core.init.FeatureInit;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.CheeseMan.swordsplus.core.init.RecipeInit;
@@ -44,6 +45,7 @@ public class SwordsPlus {
 		
 		bus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
+		EntityTypesInit.ENTITY_TYPES.register(bus);
 		BlockInit.BLOCKS.register(bus);
 		ItemInit.ITEMS.register(bus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);

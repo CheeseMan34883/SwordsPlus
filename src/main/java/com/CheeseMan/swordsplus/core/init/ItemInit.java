@@ -2,15 +2,13 @@ package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.items.Battery;
+import com.CheeseMan.swordsplus.common.items.ObiSpear;
 import com.CheeseMan.swordsplus.common.items.Trumpet;
 import com.CheeseMan.swordsplus.common.material.ModToolMaterial;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.SwordItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -96,6 +94,9 @@ public class ItemInit {
 			() -> new SwordItem(ModToolMaterial.VANADIUM_TOOL, 1, -2.4f,
 					new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
 	
+	//Spears
+	
+	public static final RegistryObject<Item> OBI_SPEAR = ITEMS.register("obi_spear", ObiSpear::new);
 	
 
 }

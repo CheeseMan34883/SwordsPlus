@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class Battery extends Item{
+public class Battery extends Item {
 
 	public Battery() {
 		super(new Item.Properties()
