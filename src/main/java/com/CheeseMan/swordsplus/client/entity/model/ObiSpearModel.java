@@ -69,6 +69,7 @@ public class ObiSpearModel extends EntityModel<ObiSpearEntity>{
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
 	
 

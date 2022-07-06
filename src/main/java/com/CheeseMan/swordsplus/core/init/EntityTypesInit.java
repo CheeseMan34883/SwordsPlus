@@ -2,7 +2,7 @@ package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
-import com.CheeseMan.swordsplus.common.items.ObiSpear;
+import com.CheeseMan.swordsplus.common.entity.SunSpearEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -20,8 +20,8 @@ public class EntityTypesInit {
 			() -> EntityType.Builder.<ObiSpearEntity>of(ObiSpearEntity::new, EntityClassification.MISC)
 					.sized(0.5f, 0.5f).build(new ResourceLocation(SwordsPlus.MOD_ID, "obi_spear").toString()));
 	
-	public static final RegistryObject<EntityType<ObiSpearEntity>> SUN_SPEAR = ENTITY_TYPES.register("sun_spear",
-			() -> EntityType.Builder.<ObiSpearEntity>of(ObiSpearEntity::new, EntityClassification.MISC)
+	public static final RegistryObject<EntityType<SunSpearEntity>> SUN_SPEAR = ENTITY_TYPES.register("sun_spear",
+			() -> EntityType.Builder.<SunSpearEntity>of(SunSpearEntity::new, EntityClassification.MISC)
 					.sized(0.5f, 0.5f).build(new ResourceLocation(SwordsPlus.MOD_ID, "sun_spear").toString()));
 
 }

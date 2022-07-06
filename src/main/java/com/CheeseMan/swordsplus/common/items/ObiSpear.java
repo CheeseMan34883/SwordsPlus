@@ -9,6 +9,7 @@ import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.IVanishable;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -23,6 +24,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class ObiSpear extends Item implements IVanishable{
@@ -56,23 +59,25 @@ public class ObiSpear extends Item implements IVanishable{
 	         int i = this.getUseDuration(stack) - p_77615_4_;
 	         if (i >= 10) {
 	        	 if (!worldIn.isClientSide) {
-	        	 ObiSpearEntity obiSpearEntity = new ObiSpearEntity(worldIn, playerentity, stack);
-	        	 obiSpearEntity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + 0.5F, 1.0F);
-	        	 if (playerentity.abilities.instabuild) {
-	        		 obiSpearEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
-	        	 }
-	        	 worldIn.addFreshEntity(obiSpearEntity);
-	        	 worldIn.playSound((PlayerEntity)null, obiSpearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
-	        	 
-	        	 if (!playerentity.abilities.instabuild) {
-                     playerentity.inventory.removeItem(stack);
-                     
+		        	 ObiSpearEntity obiSpearEntity = new ObiSpearEntity(worldIn, playerentity, stack);
+		        	 obiSpearEntity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + 0.5F, 1.0F);
+		        	 if (playerentity.abilities.instabuild) {
+		        		 obiSpearEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+		        	 }
+		        	 worldIn.addFreshEntity(obiSpearEntity);
+		        	 worldIn.playSound((PlayerEntity)null, obiSpearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		        	 
+		        	 if (!playerentity.abilities.instabuild) {
+	                     playerentity.inventory.removeItem(stack);
+	                     
+		        	 	}
 	        	 	}
-	        	 }
+	        	 
+                 }
 	        }
 	        	 
 	    }
-	 }
+	 
 	 
 	 public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		 ItemStack itemstack = playerIn.getItemInHand(handIn);
