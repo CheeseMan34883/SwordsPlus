@@ -12,6 +12,7 @@ import com.CheeseMan.swordsplus.core.init.RecipeInit;
 import com.CheeseMan.swordsplus.core.init.TileEntityTypesInit;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 import com.CheeseMan.swordsplus.core.util.ModSoundEvents;
+import com.CheeseMan.swordsplus.core.world.structure.ModStructures;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -25,6 +26,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -51,10 +53,19 @@ public class SwordsPlus {
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
 		ContainerTypesInit.CONTAINER_TYPES.register(bus);
 		ModSoundEvents.register(bus);
+		
+		ModStructures.register(bus);
 
 		MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, FeatureInit::addOres);
 		MinecraftForge.EVENT_BUS.register(this);
 
+	}
+	
+	@SuppressWarnings("unused")
+	private void setup(final FMLCommonSetupEvent event) {
+		event.enqueueWork(() -> {
+			ModStructures.setupStructures();
+		});
 	}
 
 	@SubscribeEvent
