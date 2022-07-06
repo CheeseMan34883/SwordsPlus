@@ -1,7 +1,7 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		" FO",
+		" GO",
 		" S ",
 		"S  "
 	],
@@ -9,15 +9,15 @@
 		"S": {
 			"item": "minecraft:stick"
 		},
-		"F": {
-			"item": "minecraft:feather"
+		"G": {
+			"item": "minecraft:glistering_melon_slice"
 		},
 		"O": {
 			"item": "swordsplus:obsidian_tip"
 		}
 	},
 	"result": {
-		"item": "swordsplus:obi_spear",
+		"item": "swordsplus:sun_spear",
 		"count": 1
 	}
 }

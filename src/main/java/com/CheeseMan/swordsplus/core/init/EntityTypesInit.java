@@ -19,5 +19,9 @@ public class EntityTypesInit {
 	public static final RegistryObject<EntityType<ObiSpearEntity>> OBI_SPEAR = ENTITY_TYPES.register("obi_spear",
 			() -> EntityType.Builder.<ObiSpearEntity>of(ObiSpearEntity::new, EntityClassification.MISC)
 					.sized(0.5f, 0.5f).build(new ResourceLocation(SwordsPlus.MOD_ID, "obi_spear").toString()));
+	
+	public static final RegistryObject<EntityType<ObiSpearEntity>> SUN_SPEAR = ENTITY_TYPES.register("sun_spear",
+			() -> EntityType.Builder.<ObiSpearEntity>of(ObiSpearEntity::new, EntityClassification.MISC)
+					.sized(0.5f, 0.5f).build(new ResourceLocation(SwordsPlus.MOD_ID, "sun_spear").toString()));
 
 }

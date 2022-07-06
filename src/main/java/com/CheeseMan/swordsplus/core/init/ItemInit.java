@@ -3,11 +3,13 @@ package com.CheeseMan.swordsplus.core.init;
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.items.Battery;
 import com.CheeseMan.swordsplus.common.items.ObiSpear;
+import com.CheeseMan.swordsplus.common.items.SunSpear;
 import com.CheeseMan.swordsplus.common.items.Trumpet;
 import com.CheeseMan.swordsplus.common.material.ModToolMaterial;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -57,6 +59,9 @@ public class ItemInit {
 
 	public static final RegistryObject<Battery> BATTERY = ITEMS.register("battery", Battery::new);
 
+	public static final RegistryObject<Item> OBSIDIAN_TIP = ITEMS.register("obsidian_tip",
+			() -> new Item(new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
+
 	// Swords
 	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword",
 			() -> new SwordItem(ModToolMaterial.BRONZE_TOOL, 4, -2.4f,
@@ -93,10 +98,11 @@ public class ItemInit {
 	public static final RegistryObject<Item> VANADIUM_SWORD = ITEMS.register("vanadium_sword",
 			() -> new SwordItem(ModToolMaterial.VANADIUM_TOOL, 1, -2.4f,
 					new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
-	
-	//Spears
-	
+
+	// Spears
+
 	public static final RegistryObject<Item> OBI_SPEAR = ITEMS.register("obi_spear", ObiSpear::new);
-	
+
+	public static final RegistryObject<Item> SUN_SPEAR = ITEMS.register("sun_spear", SunSpear::new);
 
 }

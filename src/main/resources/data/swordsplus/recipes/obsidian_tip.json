@@ -1,0 +1,24 @@
+{
+	"type": "swordsplus:excimer_laser_recipe",
+	"input": {
+		"item": "minecraft:obsidian"
+	},
+	"input1": {
+		"item": "minecraft:arrow"
+	},
+	"output": {
+		"item": "swordsplus:obsidian_tip",
+		"count": 1
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

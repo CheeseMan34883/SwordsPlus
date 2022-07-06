@@ -13,6 +13,7 @@
 	"item.swordsplus.foil": "Foil",
 	"item.swordsplus.iron_handle": "Iron Handle",
 	"item.swordsplus.obi_spear": "Obi Spear",
+	"item.swordsplus.obsidian_tip": "Obsidian Tip",
 	"item.swordsplus.qcarbon": "Q-Carbon",
 	"item.swordsplus.rapid_sword": "Rapid Sword",
 	"item.swordsplus.raw_vanadium": "Raw Vanadium",
@@ -43,6 +44,7 @@
 	"block.swordsplus.vanadium_block": "Vanadium Block",
 	
 	"entity.swordsplus.obi_spear": "Obi Spear",
+	"entity.swordsplus.sun_spear": "Sun Spear",
 	
 	
 	"itemGroup.swordsplus": "Swords+",

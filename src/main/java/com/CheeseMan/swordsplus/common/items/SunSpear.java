@@ -1,6 +1,6 @@
 package com.CheeseMan.swordsplus.common.items;
 
-import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
+import com.CheeseMan.swordsplus.common.entity.SunSpearEntity;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
@@ -25,14 +25,14 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ObiSpear extends Item implements IVanishable{
+public class SunSpear extends Item implements IVanishable{
 
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 	
-	public ObiSpear() {
-		super(new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS).stacksTo(1).durability(1200));
+	public SunSpear() {
+		super(new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS).stacksTo(1).durability(190));
 		Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 10.0D, AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 5.0D, AttributeModifier.Operation.ADDITION));
 	    builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", (double)-2.2F, AttributeModifier.Operation.ADDITION));
 	    this.defaultModifiers = builder.build();
 
@@ -54,23 +54,21 @@ public class ObiSpear extends Item implements IVanishable{
 	      if (entityIn instanceof PlayerEntity) {
 	         PlayerEntity playerentity = (PlayerEntity)entityIn;
 	         int i = this.getUseDuration(stack) - p_77615_4_;
-	         if (i >= 10) {
-	        	 if (!worldIn.isClientSide) {
-	        	 ObiSpearEntity obiSpearEntity = new ObiSpearEntity(worldIn, playerentity, stack);
-	        	 obiSpearEntity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + 0.5F, 1.0F);
+	         if (i >= 10 ) {
+	        	 if (!worldIn.isClientSide ) {
+	        	 SunSpearEntity SunSpearEntity = new SunSpearEntity(worldIn, playerentity, stack);
+	        	 SunSpearEntity.shootFromRotation(playerentity, playerentity.xRot, playerentity.yRot, 0.0F, 2.5F + 0.5F, 1.0F);
 	        	 if (playerentity.abilities.instabuild) {
-	        		 obiSpearEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+	        		 SunSpearEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 	        	 }
-	        	 worldIn.addFreshEntity(obiSpearEntity);
-	        	 worldIn.playSound((PlayerEntity)null, obiSpearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
+	        	 worldIn.addFreshEntity(SunSpearEntity);
+	        	 worldIn.playSound((PlayerEntity)null, SunSpearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
 	        	 
 	        	 if (!playerentity.abilities.instabuild) {
                      playerentity.inventory.removeItem(stack);
-                     
-	        	 	}
-	        	 }
-	        }
-	        	 
+                  }
+	         }
+	      }
 	    }
 	 }
 	 

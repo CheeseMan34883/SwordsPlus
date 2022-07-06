@@ -2,6 +2,7 @@ package com.CheeseMan.swordsplus.core.util;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.client.entity.ObiSpearRenderer;
+import com.CheeseMan.swordsplus.client.entity.SunSpearRenderer;
 import com.CheeseMan.swordsplus.client.screen.ExcimerLaserScreen;
 import com.CheeseMan.swordsplus.core.init.ContainerTypesInit;
 import com.CheeseMan.swordsplus.core.init.EntityTypesInit;
@@ -22,5 +23,7 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ContainerTypesInit.EXCIMER_LASER_CONTAINER_TYPE.get(), ExcimerLaserScreen::new);
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.OBI_SPEAR.get(), ObiSpearRenderer::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.SUN_SPEAR.get(), SunSpearRenderer::new);
+		
 	}
 }
