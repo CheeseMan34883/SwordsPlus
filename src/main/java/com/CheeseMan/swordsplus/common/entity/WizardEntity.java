@@ -38,9 +38,6 @@ import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.stats.Stats;
@@ -62,7 +59,8 @@ public class WizardEntity extends AbstractVillagerEntity {
 			new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f)
 	}));
 	
-	public static final DataParameter<BlockPos> TOWER = EntityDataManager.defineId(WizardEntity.class, DataSerializers.BLOCK_POS);
+	@Nullable
+	private BlockPos target;
 	
 	
 	public WizardEntity(EntityType<? extends AbstractVillagerEntity> p_i50185_1_, World p_i50185_2_) {
@@ -127,8 +125,8 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {
 		super.addAdditionalSaveData(nbt);
-		if (!this.getWizardTarget().equals(BlockPos.ZERO)) {
-			nbt.put("WizardTarget", NBTUtil.writeBlockPos(getWizardTarget()));
+		if (this.target != null) {
+			nbt.put("WizardTarget", NBTUtil.writeBlockPos(this.target));
 		}
 	}
 	
@@ -136,7 +134,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("WizardTarget")) {
-	         setWizardTarget(NBTUtil.readBlockPos(nbt.getCompound("WizardTarget")));
+	         this.target = NBTUtil.readBlockPos(nbt.getCompound("WizardTarget"));
 	      }
 
 	      this.setAge(Math.max(0, this.getAge()));
@@ -162,41 +160,32 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE), SoundEvents.GENERIC_DRINK, wizard -> wizard.isOnFire()));
-		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION), SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
+		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE), SoundEvents.GENERIC_DRINK, (wizard) -> {
+	         return wizard.isOnFire();
+	      }));
+		this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION), SoundEvents.GENERIC_DRINK, (wizard) -> {
+	         return (wizard.getHealth() < wizard.getMaxHealth());
+	      }));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
 		this.goalSelector.addGoal(2, new MoveToGoal(this, 2.0D, 0.35D));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
-	    this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
+		this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 0.35D));
+	    this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
 	    this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
 	    this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 		
+		this.goalSelector.addGoal(10, new );
+		
 	}
-
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(TOWER, BlockPos.ZERO);
-	}
-	/**
-	 * client synced
-	 */
-	public void setWizardTarget(@Nullable BlockPos pos) {
-	     this.entityData.set(TOWER, pos);
+	
+	public void setWizardTarget(@Nullable BlockPos p_213726_1_) {
+	      this.target = p_213726_1_;
 	   }
-	/**
-	 * client synced
-	 */
+
 	@Nullable
 	public BlockPos getWizardTarget() {
-	      return this.entityData.get(TOWER);
-	}
-	/**
-	 * client synced
-	 */
-	public boolean hasFoundTower(){
-		return !this.entityData.get(TOWER).equals(BlockPos.ZERO);
+	      return this.target;
 	}
 
 
@@ -240,6 +229,22 @@ public class WizardEntity extends AbstractVillagerEntity {
 		private boolean isTooFarAway(BlockPos pos, double p_220846_2_) {
 	        return !pos.closerThan(this.wizard.position(), p_220846_2_);
 	     }
+		
+	}
+	
+	static class StayCloseToTower extends WaterAvoidingRandomWalkingGoal {
+
+		public StayCloseToTower(CreatureEntity entity, double p_i47301_2_) {
+			super(entity, p_i47301_2_);
+			// TODO Auto-generated constructor stub
+		}
+		
+		@Override
+		protected Vector3d getPosition() {
+			
+			super.getPosition();
+			
+		}
 		
 	}
 	
