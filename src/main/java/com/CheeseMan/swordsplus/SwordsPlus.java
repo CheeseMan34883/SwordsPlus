@@ -18,13 +18,20 @@ import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.CheeseMan.swordsplus.core.init.RecipeInit;
 import com.CheeseMan.swordsplus.core.init.StructureInit;
 import com.CheeseMan.swordsplus.core.init.TileEntityTypesInit;
+import com.CheeseMan.swordsplus.core.init.VillagerInit;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 import com.CheeseMan.swordsplus.core.util.ConfiguredStructures;
 import com.CheeseMan.swordsplus.core.util.ModSoundEvents;
 import com.mojang.serialization.Codec;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.entity.merchant.villager.VillagerProfession;
+import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -42,6 +49,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -75,11 +83,13 @@ public class SwordsPlus {
 		
 
 		EntityTypesInit.ENTITY_TYPES.register(bus);
+		//VillagerInit.register(bus);
 		BlockInit.BLOCKS.register(bus);
 		ItemInit.ITEMS.register(bus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
 		ContainerTypesInit.CONTAINER_TYPES.register(bus);
 		StructureInit.STRUCTURES.register(bus);
+		
 		bus.addListener(this::setup);
 		ModSoundEvents.register(bus);
 		
@@ -91,35 +101,23 @@ public class SwordsPlus {
 
 	}
 	
-	/**
-     * Here, setupStructures will be ran after registration of all structures are finished.
-     * This is important to be done here so that the Deferred Registry has already ran and
-     * registered/created our structure for us.
-     *
-     * Once after that structure instance is made, we then can now do the rest of the setup
-     * that requires a structure instance such as setting the structure spacing, creating the
-     * configured structure instance, and more.
-     */
+	
     public void setup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(() -> {
             StructureInit.setupStructures();
-            ConfiguredStructures.registerConfiguredStructures();
+            ConfiguredStructures.registerConfiguredStructures();  
+            
+            //VillagerInit.registerPOIs();
         });
     }
     
-    /**
-     * This is the event you will use to add anything to any biome.
-     * This includes spawns, changing the biome's looks, messing with its surfacebuilders,
-     * adding carvers, spawning new features... etc
-     *
-     * Here, we will use this to add our structure to all biomes.
-     */
+  
     public void biomeModification(final BiomeLoadingEvent event) {
     	RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
-        if(types.contains(BiomeDictionary.Type.PLAINS)) {
+        if(types.contains(BiomeDictionary.Type.SNOWY)) {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
             structures.add(() -> StructureInit.WIZARD_TOWER.get().configured(IFeatureConfig.NONE));
@@ -161,6 +159,8 @@ public class SwordsPlus {
         }
         
     }
+    
+   
 
 	@SubscribeEvent
 	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {

@@ -2,6 +2,7 @@ package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.block.ExcimerLaser;
+import com.CheeseMan.swordsplus.common.block.WizardPedestal;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -60,6 +61,8 @@ public class BlockInit {
 					.requiresCorrectToolForDrops()));
 	
 	public static final RegistryObject<Block> EXCIMER_LASER = BLOCKS.register("excimer_laser", () -> new ExcimerLaser());
+	
+	public static final RegistryObject<Block> WIZARD_PEDESTAL = BLOCKS.register("wizard_pedestal", () -> new WizardPedestal());
 					
 
 	// Ores

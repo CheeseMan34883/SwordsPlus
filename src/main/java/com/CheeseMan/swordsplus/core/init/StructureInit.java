@@ -31,7 +31,7 @@ public class StructureInit {
 	
 	public static void setupStructures() {
         setupMapSpacingAndLand(
-				WIZARD_TOWER.get(), new StructureSeparationSettings(3, 2, 1234567890), true);
+				WIZARD_TOWER.get(), new StructureSeparationSettings(400, 250, 1234567890), true);
         		
     }
 	

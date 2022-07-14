@@ -4,10 +4,13 @@ import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.client.entity.ObiSpearRenderer;
 import com.CheeseMan.swordsplus.client.entity.SunSpearRenderer;
 import com.CheeseMan.swordsplus.client.screen.ExcimerLaserScreen;
+import com.CheeseMan.swordsplus.core.init.BlockInit;
 import com.CheeseMan.swordsplus.core.init.ContainerTypesInit;
 import com.CheeseMan.swordsplus.core.init.EntityTypesInit;
 
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -24,6 +27,7 @@ public class ClientEventBusSubscriber {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.OBI_SPEAR.get(), ObiSpearRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.SUN_SPEAR.get(), SunSpearRenderer::new);
+		RenderTypeLookup.setRenderLayer(BlockInit.WIZARD_PEDESTAL.get(), RenderType.cutout());
 		
 	}
 }

@@ -51,13 +51,7 @@ public class WizardTowerStructure extends Structure<NoFeatureConfig> {
 		return GenerationStage.Decoration.SURFACE_STRUCTURES;
 	}
 
-	private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList
-			.of(new MobSpawnInfo.Spawners(EntityType.HOGLIN, 100, 1, 2));
-
-	@Override
-	public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
-		return STRUCTURE_CREATURES;
-	}
+	
 
 	@Override
 	protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource, long seed,

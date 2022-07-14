@@ -43,10 +43,11 @@
 	"block.swordsplus.titanium_ore": "Titanium Ore",
 	"block.swordsplus.vanadium_ore": "Vanadium Ore",
 	"block.swordsplus.vanadium_block": "Vanadium Block",
+	"block.swordsplus.wizard_pedestal": "Wizard's Pedestal",
 	
 	"entity.swordsplus.obi_spear": "Obi Spear",
 	"entity.swordsplus.sun_spear": "Sun Spear",
-	
+	"entity.minecraft.villager.swordsplus.wizard": "Wizard",
 	
 	"itemGroup.swordsplus": "Swords+",
 

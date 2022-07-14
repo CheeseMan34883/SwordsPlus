@@ -1,0 +1,26 @@
+{
+	"variants": {
+		"facing=east": { 
+			"model": "swordsplus:block/wizard_pedestal", 
+			"y": 90
+		
+		},
+		
+		"facing=north": { 
+			"model": "swordsplus:block/wizard_pedestal"			
+		
+		},
+		
+		"facing=south": { 
+			"model": "swordsplus:block/wizard_pedestal", 
+			"y": 180
+		
+		},
+		"facing=west": { 
+			"model": "swordsplus:block/wizard_pedestal", 
+			"y": 270
+		
+		}
+		
+	}
+}
