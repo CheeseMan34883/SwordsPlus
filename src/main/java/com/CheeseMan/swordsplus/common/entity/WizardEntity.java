@@ -6,7 +6,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
-import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
+import com.CheeseMan.swordsplus.common.entity.goals.LookAroundGoal;
+import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.google.common.collect.ImmutableMap;
 
@@ -19,13 +20,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookAtWithoutMovingGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TradeWithPlayerGoal;
@@ -41,7 +41,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
-import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
@@ -217,9 +216,12 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-		this.goalSelector.addGoal(0,
-				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE),
-						SoundEvents.GENERIC_DRINK, wizard -> wizard.isOnFire()));
+//		this.goalSelector.addGoal(0,
+//				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE),
+//						SoundEvents.GENERIC_DRINK, wizard -> wizard.isOnFire()));
+		this.goalSelector.addGoal(7, new LookAroundGoal(this));
+		//this.goalSelector.addGoal(0, new UseWaterBucketGoal(this, SoundEvents.FISHING_BOBBER_SPLASH));
+		
 		this.goalSelector.addGoal(0,
 				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRONG_HEALING),
 						SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
@@ -228,8 +230,9 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.goalSelector.addGoal(2, new MoveToGoal(this, 2.0D, 0.35D));
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
-		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-		this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new MeleeWizardGoal(this));
+		//this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 
 	}
