@@ -25,6 +25,7 @@
 	"item.swordsplus.titanium_sword": "Titanium Sword",
 	"item.swordsplus.vanadium_ingot": "Vanadium Ingot",
 	"item.swordsplus.vanadium_sword": "Vanadium Sword",
+	"item.swordsplus.wizard_spawn_egg": "Wizard Spawn Egg",
 	
 	"block.swordsplus.aluminum_block": "Aluminum Block",
 	"block.swordsplus.aluminum_ore": "Aluminum Ore",
@@ -47,7 +48,7 @@
 	
 	"entity.swordsplus.obi_spear": "Obi Spear",
 	"entity.swordsplus.sun_spear": "Sun Spear",
-	"entity.minecraft.villager.swordsplus.wizard": "Wizard",
+	
 	
 	"itemGroup.swordsplus": "Swords+",
 

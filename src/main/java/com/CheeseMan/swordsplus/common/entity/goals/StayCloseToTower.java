@@ -1,5 +1,7 @@
-package com.CheeseMan.swordsplus.common.entity;
+package com.CheeseMan.swordsplus.common.entity.goals;
 
+import com.CheeseMan.swordsplus.common.entity.WizardEntity;
+import com.CheeseMan.swordsplus.core.init.BlockInit;
 import com.CheeseMan.swordsplus.core.init.StructureInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -67,9 +69,9 @@ public class StayCloseToTower extends WaterAvoidingRandomWalkingGoal {
             BlockPos nearestStructure = ((ServerWorld)(wizard.level)).findNearestMapFeature(StructureInit.WIZARD_TOWER.get(), new BlockPos(wizard.position()), 100, true);
             if (nearestStructure != null){
                 //TODO change the cauldron to ur custom block
-                BlockPos cauldron = BlockPos.betweenClosedStream(new AxisAlignedBB(nearestStructure).inflate(50)).filter(pos -> wizard.level.getBlockState(pos).getBlock() == Blocks.CAULDRON).min(Comparator.comparing(pos -> pos.distSqr(nearestStructure))).orElse(BlockPos.ZERO);
-                wizard.setWizardTarget(cauldron);
-                return convert(cauldron);
+                BlockPos wizard_pedestal = BlockPos.betweenClosedStream(new AxisAlignedBB(nearestStructure).inflate(50)).filter(pos -> wizard.level.getBlockState(pos).getBlock() == BlockInit.WIZARD_PEDESTAL.get()).min(Comparator.comparing(pos -> pos.distSqr(nearestStructure))).orElse(BlockPos.ZERO);
+                wizard.setWizardTarget(wizard_pedestal);
+                return convert(wizard_pedestal);
             }
         }
         return Vector3d.ZERO;
