@@ -48,8 +48,7 @@
 	
 	"entity.swordsplus.obi_spear": "Obi Spear",
 	"entity.swordsplus.sun_spear": "Sun Spear",
-	
-	
+	"entity.swordsplus.wizard": "Wizard",
 	"itemGroup.swordsplus": "Swords+",
 
 	"tooltip.swordsplus.battery.energy": "Energy: %s/%d"
