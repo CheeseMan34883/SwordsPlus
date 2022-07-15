@@ -64,6 +64,7 @@ public class ObiSpear extends Item implements IVanishable{
 		        	 if (playerentity.abilities.instabuild) {
 		        		 obiSpearEntity.pickup = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 		        	 }
+					 System.out.println("entity added");
 		        	 worldIn.addFreshEntity(obiSpearEntity);
 		        	 worldIn.playSound((PlayerEntity)null, obiSpearEntity, SoundEvents.TRIDENT_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		        	 

@@ -73,7 +73,7 @@ public class ObiSpearEntity extends AbstractArrowEntity{
 	             this.remove();
 	          }
 	      }
-	
+		super.tick();
 	}
 	
 	private boolean isAcceptibleReturnOwner() {
@@ -85,7 +85,7 @@ public class ObiSpearEntity extends AbstractArrowEntity{
 	      }
 	}
 	
-	protected ItemStack getPickupItem() {
+	public ItemStack getPickupItem() {
 	      return this.obiSpearItem.copy();
 	   }
 
