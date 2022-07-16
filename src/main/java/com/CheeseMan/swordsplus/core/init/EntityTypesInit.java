@@ -26,7 +26,7 @@ public class EntityTypesInit {
 					.sized(0.5f, 0.5f).build(new ResourceLocation(SwordsPlus.MOD_ID, "sun_spear").toString()));
 
 	public static final RegistryObject<EntityType<WizardEntity>> WIZARD = ENTITY_TYPES.register("wizard",
-			() -> EntityType.Builder.<WizardEntity>of(WizardEntity::new, EntityClassification.CREATURE)
+			() -> EntityType.Builder.<WizardEntity>of(WizardEntity::new, EntityClassification.CREATURE).fireImmune()
 					.sized(0.6f, 1.95f).clientTrackingRange(10)
 					.build(new ResourceLocation(SwordsPlus.MOD_ID, "wizard").toString()));
 
