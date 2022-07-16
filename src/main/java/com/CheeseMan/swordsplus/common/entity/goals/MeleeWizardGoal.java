@@ -40,6 +40,7 @@ public class MeleeWizardGoal extends Goal{
 	
 	@Override
 	public boolean canUse() {
+<<<<<<< Updated upstream
 		LivingEntity livingentity = wizard.getTarget();
 		if (livingentity == null) {
             return false;
@@ -59,11 +60,36 @@ public class MeleeWizardGoal extends Goal{
          }
 		return false;
 	}
-
-	      
-	         
-	      
-	   
+=======
+	      long i = this.wizard.level.getGameTime();
+	      if (i - this.lastCanUseCheck < 20L) {
+	         return false;
+	      } else {
+	         this.lastCanUseCheck = i;
+	         LivingEntity livingentity = this.wizard.getTarget();
+	         if (livingentity == null) {
+	            return false;
+	         } else if (!livingentity.isAlive()) {
+	            return false;
+	         } else {
+	           if (canPenalize) {
+	               if (--this.ticksUntilNextPathRecalculation <= 0) {
+	                  this.path = this.wizard.getNavigation().createPath(livingentity, 0);
+	                  this.ticksUntilNextPathRecalculation = 4 + this.wizard.getRandom().nextInt(7);
+	                  return this.path != null;
+	               } else {
+	                  return true;
+	               }
+	            }
+	            this.path = this.wizard.getNavigation().createPath(livingentity, 0);
+	            if (this.path != null) {
+	               return true;
+	            } else {
+	               return this.getAttackReachSqr(livingentity) >= this.wizard.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+	            }
+	         }
+	      }
+	   }
 	
 	public boolean canContinueToUse() {
 	      LivingEntity livingentity = this.wizard.getTarget();
@@ -167,5 +193,5 @@ public class MeleeWizardGoal extends Goal{
 		
 	
 
-
+>>>>>>> Stashed changes
 }

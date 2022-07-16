@@ -71,12 +71,14 @@ public class WizardEntity extends AbstractVillagerEntity {
 	public static final Int2ObjectMap<VillagerTrades.ITrade[]> WIZARD_TRADES = toIntMap(ImmutableMap.of(1,
 			new VillagerTrades.ITrade[] {
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.RAPID_SWORD.get(), 4, 1, 3, 6, 0.2f),
+<<<<<<< Updated upstream
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) },
 			2, new VillagerTrades.ITrade[]{
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.COPPER_SWORD.get(), 4, 1, 3, 6, 0.2f),
 			}));
 
-					
+=======
+					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) }));
 	
 	Vector3d vector3d = this.getViewVector(1.0F);
     double d2 = this.getTarget().getX() - (this.getX() + vector3d.x * 4.0D);
@@ -86,7 +88,7 @@ public class WizardEntity extends AbstractVillagerEntity {
     public AbstractFireballEntity fireballentity = new FireballEntity(this.level, this, d2, d3, d4);
     
 					
-
+>>>>>>> Stashed changes
 	public static final DataParameter<BlockPos> TOWER = EntityDataManager.defineId(WizardEntity.class,
 			DataSerializers.BLOCK_POS);
 
@@ -252,9 +254,10 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1.0F));
+<<<<<<< Updated upstream
+		this.targetSelector.addGoal(2, new MeleeWizardGoal(this));
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-
+=======
 
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1));
 		//this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
@@ -263,7 +266,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1F));
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 
-
+>>>>>>> Stashed changes
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 
 	}
