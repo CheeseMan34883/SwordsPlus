@@ -237,33 +237,19 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
-//		this.goalSelector.addGoal(0,
-//				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE),
-//						SoundEvents.GENERIC_DRINK, wizard -> wizard.isOnFire()));
 		this.goalSelector.addGoal(0, new LookRandomlyGoal(this));
-		//this.goalSelector.addGoal(0, new UseWaterBucketGoal(this, SoundEvents.FISHING_BOBBER_SPLASH));
-		
 		this.goalSelector.addGoal(0,
 				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRONG_HEALING),
 						SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
-		//this.goalSelector.addGoal(2, new MoveToGoal(this, 2.0D, 0.35D));
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1.0F));
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-
-
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1));
-		//this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-
-		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1F));
-		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-
-
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 
 	}
