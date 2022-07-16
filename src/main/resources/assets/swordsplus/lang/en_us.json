@@ -25,6 +25,7 @@
 	"item.swordsplus.titanium_sword": "Titanium Sword",
 	"item.swordsplus.vanadium_ingot": "Vanadium Ingot",
 	"item.swordsplus.vanadium_sword": "Vanadium Sword",
+	"item.swordsplus.wizard_spawn_egg": "Wizard Spawn Egg",
 	
 	"block.swordsplus.aluminum_block": "Aluminum Block",
 	"block.swordsplus.aluminum_ore": "Aluminum Ore",
@@ -47,12 +48,7 @@
 	
 	"entity.swordsplus.obi_spear": "Obi Spear",
 	"entity.swordsplus.sun_spear": "Sun Spear",
-<<<<<<< HEAD
 	"entity.swordsplus.wizard": "Wizard",
-=======
-	"entity.minecraft.villager.swordsplus.wizard": "Wizard",
-	
->>>>>>> parent of de418d2 (Merge branch 'main' of https://github.com/CheeseMan34883/SwordsPlus)
 	"itemGroup.swordsplus": "Swords+",
 
 	"tooltip.swordsplus.battery.energy": "Energy: %s/%d"

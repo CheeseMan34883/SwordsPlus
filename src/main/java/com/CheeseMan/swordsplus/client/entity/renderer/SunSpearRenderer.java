@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.entity;
+package com.CheeseMan.swordsplus.client.entity.renderer;
 
 
 import com.CheeseMan.swordsplus.client.entity.model.SunSpearModel;
