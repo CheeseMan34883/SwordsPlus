@@ -64,7 +64,7 @@ public class StayCloseToTower extends WaterAvoidingRandomWalkingGoal {
             BlockPos nearestStructure = ((ServerWorld) (wizard.level)).findNearestMapFeature(StructureInit.WIZARD_TOWER.get(), wizard.blockPosition(), 100, false);
             System.out.println(nearestStructure);
             if (nearestStructure != null) {
-                
+                //TODO change the cauldron to ur custom block
                 BlockPos nearestStructure2 = nearestStructure.offset(0, 50, 0);
                 BlockPos wizard_pedestal = getWizardPedestal(nearestStructure2, 100);
                 wizard.setWizardTarget(wizard_pedestal);
