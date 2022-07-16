@@ -6,7 +6,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
-import com.CheeseMan.swordsplus.common.entity.goals.LightningAttackGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
@@ -59,6 +58,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -224,16 +224,17 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.goalSelector.addGoal(0,
 				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRONG_HEALING),
 						SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
-		this.goalSelector.addGoal(2, new LightningAttackGoal(this));
+		//this.goalSelector.addGoal(2, new LightningAttackGoal(this));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1.0F));
+		
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
-
+		this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 	}
 
 	@Override
@@ -245,14 +246,13 @@ public class WizardEntity extends AbstractVillagerEntity {
 			return false;
 		}
 		
+		
 		else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
 				&& p_70097_1_.getEntity() instanceof PlayerEntity) {
-			super.hurt(p_70097_1_, 1000.0F);
 			return false;
 		} 
 		else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
 				&& p_70097_1_.getEntity() instanceof LivingEntity) {
-			super.hurt(p_70097_1_, p_70097_2_);
 			return false;
 		} 
 		else {
