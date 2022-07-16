@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.entity.renderer;
+package com.CheeseMan.swordsplus.client.entity;
 
 import com.CheeseMan.swordsplus.client.entity.model.ObiSpearModel;
 import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;

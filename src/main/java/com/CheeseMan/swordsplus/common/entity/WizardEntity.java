@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
@@ -14,28 +15,34 @@ import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
+
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.LookAtWithoutMovingGoal;
+import net.minecraft.entity.ai.goal.MoveTowardsRestrictionGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TradeWithPlayerGoal;
 import net.minecraft.entity.ai.goal.UseItemGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+
 import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
@@ -55,15 +62,13 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class WizardEntity extends AbstractVillagerEntity {
-	
+public class WizardEntity extends AbstractVillagerEntity {	
 	
 	public static final DataParameter<Boolean> DATA_IS_CHARGING = EntityDataManager.defineId(WizardEntity.class,
 			DataSerializers.BOOLEAN);
@@ -94,6 +99,10 @@ public class WizardEntity extends AbstractVillagerEntity {
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.ATTACK_DAMAGE, 15.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.35D).add(Attributes.FOLLOW_RANGE, 25.0D);
 	}
+
+	
+	
+	
 	
 	public WizardEntity(EntityType<? extends AbstractVillagerEntity> p_i50185_1_, World p_i50185_2_) {
 		super(p_i50185_1_, p_i50185_2_);
@@ -101,32 +110,6 @@ public class WizardEntity extends AbstractVillagerEntity {
 	}
 	
 	
-	
-	
-	@Override
-	protected int getExperienceReward(PlayerEntity p_70693_1_) {
-		return 0;
-	}
-	
-	@Override
-	protected SoundEvent getAmbientSound() {
-		return SoundEvents.VILLAGER_AMBIENT;
-	}
-	
-	@Override
-	protected SoundEvent getDeathSound() {
-		return SoundEvents.VILLAGER_DEATH;
-	}
-	
-	@Override
-	protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-		return SoundEvents.VILLAGER_HURT;
-	}
-	
-	@Override
-	protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-		this.playSound(SoundEvents.SHROOMLIGHT_STEP, 0.10F, 0.4F);
-	}
 	
 	
 	@Override
@@ -139,9 +122,9 @@ public class WizardEntity extends AbstractVillagerEntity {
 	}
 
 	private static Int2ObjectMap<VillagerTrades.ITrade[]> toIntMap(ImmutableMap<Integer, VillagerTrades.ITrade[]> map) {
-		return new Int2ObjectOpenHashMap<>(map);
+	      return new Int2ObjectOpenHashMap<>(map);
 	}
-
+	
 	@Override
 	protected void updateTrades() {
 		VillagerTrades.ITrade[] trades = WizardEntity.WIZARD_TRADES.get(1);
@@ -156,12 +139,11 @@ public class WizardEntity extends AbstractVillagerEntity {
 			if (offer != null) {
 				offers.add(offer);
 			}
-
+			
 		}
 	}
 	
-	
-	
+
 	@Override
 	protected ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
 		ItemStack stack = playerIn.getItemInHand(handIn);
@@ -169,6 +151,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 			if (handIn == Hand.MAIN_HAND) {
 				playerIn.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
+
 			System.out.println(!this.getOffers().isEmpty());
 			if (!this.getOffers().isEmpty()) {
 				if (!this.level.isClientSide) {
@@ -178,11 +161,25 @@ public class WizardEntity extends AbstractVillagerEntity {
 
 			}
 			return ActionResultType.sidedSuccess(this.level.isClientSide);
-		} else {
-			return super.mobInteract(playerIn, handIn);
+		} 
+		else {
+
+			if (this.getOffers().isEmpty()) {
+	            return ActionResultType.sidedSuccess(this.level.isClientSide);
+	         }
+			else {
+	            if (!this.level.isClientSide) {
+	               this.setTradingPlayer(playerIn);
+	               this.openTradingScreen(playerIn, this.getDisplayName(), 1);
+	            }
+
+	            return ActionResultType.sidedSuccess(this.level.isClientSide);
+	         }
 		}
+		
 	}
 	
+
 	
 
 	@Override
@@ -191,26 +188,23 @@ public class WizardEntity extends AbstractVillagerEntity {
 		if (!this.getWizardTarget().equals(BlockPos.ZERO)) {
 			nbt.put("WizardTarget", NBTUtil.writeBlockPos(getWizardTarget()));
 		}
-		nbt.putInt("ExplosionPower", this.explosionPower);
 	}
-
+	
 	@Override
 	public void readAdditionalSaveData(CompoundNBT nbt) {
 		super.readAdditionalSaveData(nbt);
 		if (nbt.contains("WizardTarget")) {
-			setWizardTarget(NBTUtil.readBlockPos(nbt.getCompound("WizardTarget")));
-		}
-		if (nbt.contains("ExplosionPower", 99)) {
-			this.explosionPower = nbt.getInt("ExplosionPower");
-		}
+	         setWizardTarget(NBTUtil.readBlockPos(nbt.getCompound("WizardTarget")));
+	      }
 
-		this.setAge(Math.max(0, this.getAge()));
+	      this.setAge(Math.max(0, this.getAge()));
 	}
-
+	
 	@Override
 	public boolean removeWhenFarAway(double p_213397_1_) {
 		return false;
 	}
+
 
 	public boolean isCharging() {
 		return this.entityData.get(DATA_IS_CHARGING);
@@ -237,6 +231,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
+
 		this.goalSelector.addGoal(0, new LookRandomlyGoal(this));
 		this.goalSelector.addGoal(0,
 				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRONG_HEALING),
@@ -286,151 +281,144 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	public int getMaxSpawnClusterSize() {
 		return 1;
+		
+		
 	}
 
 	@Override
 	protected void defineSynchedData() {
 		super.defineSynchedData();
-		this.entityData.define(DATA_IS_CHARGING, false);
 		this.entityData.define(TOWER, BlockPos.ZERO);
 	}
-
 	/**
 	 * client synced
 	 */
 	public void setWizardTarget(@Nullable BlockPos pos) {
-		this.entityData.set(TOWER, pos);
-	}
-
+	     this.entityData.set(TOWER, pos);
+	   }
 	/**
 	 * client synced
 	 */
 	@Nullable
 	public BlockPos getWizardTarget() {
-		return this.entityData.get(TOWER);
+	      return this.entityData.get(TOWER);
 	}
-
 	/**
 	 * client synced
 	 */
-	public boolean hasFoundTower() {
+	public boolean hasFoundTower(){
 		return !this.entityData.get(TOWER).equals(BlockPos.ZERO);
 	}
 
-	static class MoveToGoal extends Goal {
+
+	static class MoveToGoal extends Goal{
 		final WizardEntity wizard;
 		final double stopDistance;
 		final double speedModifier;
-
-		MoveToGoal(WizardEntity entity, double stopDistance, double speedModifier) {
+		
+		 MoveToGoal(WizardEntity entity, double stopDistance, double speedModifier) {
 			this.wizard = entity;
 			this.stopDistance = stopDistance;
-			this.speedModifier = speedModifier;
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-
+	        this.speedModifier = speedModifier;
+	        this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+	        
 		}
-
+		 
 		public void stop() {
-			this.wizard.setWizardTarget((BlockPos) null);
+			this.wizard.setWizardTarget((BlockPos)null);
 		}
-
+		
 		@Override
 		public boolean canUse() {
 			BlockPos blockpos = this.wizard.getWizardTarget();
 			return blockpos != null && this.isTooFarAway(blockpos, this.stopDistance);
 		}
-
+		
 		public void tick() {
 			BlockPos pos = this.wizard.getWizardTarget();
 			if (pos != null && wizard.getNavigation().isDone()) {
-				if (this.isTooFarAway(pos, 10.0D)) {
-					Vector3d vector3d = (new Vector3d((double) pos.getX() - this.wizard.getX(),
-							(double) pos.getY() - this.wizard.getY(), (double) pos.getZ() - this.wizard.getZ()))
-									.normalize();
-					Vector3d vector3d1 = vector3d.scale(10.0D).add(this.wizard.getX(), this.wizard.getY(),
-							this.wizard.getZ());
-					wizard.getNavigation().moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
-				} else {
-					wizard.getNavigation().moveTo((double) pos.getX(), (double) pos.getY(), (double) pos.getZ(),
-							this.speedModifier);
-				}
+				 if (this.isTooFarAway(pos, 10.0D)) {
+		               Vector3d vector3d = (new Vector3d((double)pos.getX() - this.wizard.getX(), (double)pos.getY() - this.wizard.getY(), (double)pos.getZ() - this.wizard.getZ())).normalize();
+		               Vector3d vector3d1 = vector3d.scale(10.0D).add(this.wizard.getX(), this.wizard.getY(), this.wizard.getZ());
+		               wizard.getNavigation().moveTo(vector3d1.x, vector3d1.y, vector3d1.z, this.speedModifier);
+				 }
+				 else {
+					 wizard.getNavigation().moveTo((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), this.speedModifier);
+				 }
 			}
 		}
-
+		
 		private boolean isTooFarAway(BlockPos pos, double p_220846_2_) {
-			return !pos.closerThan(this.wizard.position(), p_220846_2_);
-		}
-
+	        return !pos.closerThan(this.wizard.position(), p_220846_2_);
+	     }
+		
 	}
-
+	
 //	static class IntramuralForValuables {
 //		
 //	}
-	static class ValuablesForItems implements VillagerTrades.ITrade {
+	static class ValuablesForItems implements VillagerTrades.ITrade{
 		private final Item item;
-		private final int cost;
-		private final int maxUses;
-		private final int wizardXp;
-		private final float priceMultiplier;
-
-		public ValuablesForItems(IItemProvider p_i50539_1_, int p_i50539_2_, int p_i50539_3_, int p_i50539_4_) {
-			this.item = p_i50539_1_.asItem();
-			this.cost = p_i50539_2_;
-			this.maxUses = p_i50539_3_;
-			this.wizardXp = p_i50539_4_;
-			this.priceMultiplier = 0.05F;
-		}
-
-		@Override
+	    private final int cost;
+	    private final int maxUses;
+	    private final int wizardXp;
+	    private final float priceMultiplier;
+	
+	    public ValuablesForItems(IItemProvider p_i50539_1_, int p_i50539_2_, int p_i50539_3_, int p_i50539_4_) {
+	         this.item = p_i50539_1_.asItem();
+	         this.cost = p_i50539_2_;
+	         this.maxUses = p_i50539_3_;
+	         this.wizardXp = p_i50539_4_;
+	         this.priceMultiplier = 0.05F;
+	      }
+	    
+	    @Override
 		public MerchantOffer getOffer(Entity entityIn, Random rand) {
-			ItemStack itemstack = new ItemStack(this.item, this.cost);
-			return new MerchantOffer(itemstack, (new ItemStack(Items.NETHERITE_INGOT)), this.maxUses, this.wizardXp,
-					this.priceMultiplier);
+	    	ItemStack itemstack = new ItemStack(this.item, this.cost);
+	        return new MerchantOffer(itemstack, (new ItemStack(Items.NETHERITE_INGOT)), this.maxUses, this.wizardXp, this.priceMultiplier);
 		}
-
+	    
+		
 	}
-
 	static class ItemsForValuablesTrade implements VillagerTrades.ITrade {
-		private final ItemStack itemStack;
-		private final int valuablesCost;
-		private final int numberOfItems;
-		private final int maxUses;
-		private final int wizardXp;
-		private final float priceMultiplier;
+	      private final ItemStack itemStack;
+	      private final int valuablesCost;
+	      private final int numberOfItems;
+	      private final int maxUses;
+	      private final int wizardXp;
+	      private final float priceMultiplier;
 
-		public ItemsForValuablesTrade(Block p_i50528_1_, int p_i50528_2_, int p_i50528_3_, int p_i50528_4_,
-				int p_i50528_5_) {
-			this(new ItemStack(p_i50528_1_), p_i50528_2_, p_i50528_3_, p_i50528_4_, p_i50528_5_);
-		}
+	      public ItemsForValuablesTrade(Block p_i50528_1_, int p_i50528_2_, int p_i50528_3_, int p_i50528_4_, int p_i50528_5_) {
+	         this(new ItemStack(p_i50528_1_), p_i50528_2_, p_i50528_3_, p_i50528_4_, p_i50528_5_);
+	      }
 
-		public ItemsForValuablesTrade(Item p_i50529_1_, int p_i50529_2_, int p_i50529_3_, int p_i50529_4_) {
-			this(new ItemStack(p_i50529_1_), p_i50529_2_, p_i50529_3_, 12, p_i50529_4_);
-		}
+	      public ItemsForValuablesTrade(Item p_i50529_1_, int p_i50529_2_, int p_i50529_3_, int p_i50529_4_) {
+	         this(new ItemStack(p_i50529_1_), p_i50529_2_, p_i50529_3_, 12, p_i50529_4_);
+	      }
 
-		public ItemsForValuablesTrade(Item p_i50530_1_, int p_i50530_2_, int p_i50530_3_, int p_i50530_4_,
-				int p_i50530_5_, float f) {
-			this(new ItemStack(p_i50530_1_), p_i50530_2_, p_i50530_3_, p_i50530_4_, p_i50530_5_, f);
-		}
+	      public ItemsForValuablesTrade(Item p_i50530_1_, int p_i50530_2_, int p_i50530_3_, int p_i50530_4_, int p_i50530_5_, float f) {
+	         this(new ItemStack(p_i50530_1_), p_i50530_2_, p_i50530_3_, p_i50530_4_, p_i50530_5_, f);
+	      }
 
-		public ItemsForValuablesTrade(ItemStack p_i50531_1_, int p_i50531_2_, int p_i50531_3_, int p_i50531_4_,
-				int p_i50531_5_) {
-			this(p_i50531_1_, p_i50531_2_, p_i50531_3_, p_i50531_4_, p_i50531_5_, 0.05F);
-		}
+	      public ItemsForValuablesTrade(ItemStack p_i50531_1_, int p_i50531_2_, int p_i50531_3_, int p_i50531_4_, int p_i50531_5_) {
+	         this(p_i50531_1_, p_i50531_2_, p_i50531_3_, p_i50531_4_, p_i50531_5_, 0.05F);
+	      }
 
-		public ItemsForValuablesTrade(ItemStack stack, int cost, int numberOfItems, int uses, int xp, float pM) {
-			this.itemStack = stack;
-			this.valuablesCost = cost;
-			this.numberOfItems = numberOfItems;
-			this.maxUses = uses;
-			this.wizardXp = xp;
-			this.priceMultiplier = pM;
-		}
+	      public ItemsForValuablesTrade(ItemStack stack, int cost, int numberOfItems, int uses, int xp, float pM) {
+	         this.itemStack = stack;
+	         this.valuablesCost = cost;
+	         this.numberOfItems = numberOfItems;
+	         this.maxUses = uses;
+	         this.wizardXp = xp;
+	         this.priceMultiplier = pM;
+	      }
+
+	      
 
 		public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
-			return new MerchantOffer(new ItemStack(Items.NETHERITE_INGOT, this.valuablesCost),
-					new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.wizardXp,
-					this.priceMultiplier);
-		}
-	}
+	         return new MerchantOffer(new ItemStack(Items.NETHERITE_INGOT, this.valuablesCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.wizardXp, this.priceMultiplier);
+	      }
+	   }
 
 }
+

@@ -62,11 +62,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> OBSIDIAN_TIP = ITEMS.register("obsidian_tip",
 			() -> new Item(new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
 
-	 public static final RegistryObject<SpawnEggItemInit> WIZARD_SPAWN_EGG = ITEMS.register("wizard_spawn_egg",
-	            () -> new SpawnEggItemInit(EntityTypesInit.WIZARD, 0x991f46, 0x174042,
-	                    new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
-	 
-
 	// Swords
 	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword",
 			() -> new SwordItem(ModToolMaterial.BRONZE_TOOL, 4, -2.4f,
