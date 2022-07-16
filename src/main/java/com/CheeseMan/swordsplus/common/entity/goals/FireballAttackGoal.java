@@ -19,6 +19,8 @@ public class FireballAttackGoal extends Goal{
 		
 	}
 	
+	
+	
 	@Override
 	public boolean canUse() {
 		return this.wizard.getTarget() != null;
@@ -51,7 +53,7 @@ public class FireballAttackGoal extends Goal{
                 double d3 = entity.getY(0.5D) - (0.5D + this.wizard.getY(0.5D));
                 double d4 = entity.getZ() - (this.wizard.getZ() + vector3d.z * 4.0D);
                 if (!this.wizard.isSilent()) {
-                   world.levelEvent((PlayerEntity)null, 1016, this.wizard.blockPosition(), 0);
+                   //world.levelEvent((PlayerEntity)null, 1016, this.wizard.blockPosition(), 0);
                 }
 
                 FireballEntity fireballentity = new FireballEntity(world, this.wizard, d2, d3, d4);
@@ -66,6 +68,7 @@ public class FireballAttackGoal extends Goal{
 
           this.wizard.setCharging(this.chargeTime > 10);
 	}
+	
 	
 }
 
