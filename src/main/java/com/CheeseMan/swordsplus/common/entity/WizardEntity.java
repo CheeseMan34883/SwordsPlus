@@ -71,7 +71,10 @@ public class WizardEntity extends AbstractVillagerEntity {
 	public static final Int2ObjectMap<VillagerTrades.ITrade[]> WIZARD_TRADES = toIntMap(ImmutableMap.of(1,
 			new VillagerTrades.ITrade[] {
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.RAPID_SWORD.get(), 4, 1, 3, 6, 0.2f),
-					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) }));
+					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) },
+			2, new VillagerTrades.ITrade[]{
+					new WizardEntity.ItemsForValuablesTrade(ItemInit.COPPER_SWORD.get(), 4, 1, 3, 6, 0.2f),
+			}));
 
 	public static final DataParameter<BlockPos> TOWER = EntityDataManager.defineId(WizardEntity.class,
 			DataSerializers.BLOCK_POS);
@@ -129,6 +132,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 	protected void updateTrades() {
 		VillagerTrades.ITrade[] trades = WizardEntity.WIZARD_TRADES.get(1);
 		VillagerTrades.ITrade[] trades1 = WizardEntity.WIZARD_TRADES.get(2);
+		System.out.println(trades + "|" + trades1);
 		if (trades != null && trades1 != null) {
 			MerchantOffers offers = this.getOffers();
 			this.addOffersFromItemListings(offers, trades, 1);
@@ -149,6 +153,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 			if (handIn == Hand.MAIN_HAND) {
 				playerIn.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
+			System.out.println(!this.getOffers().isEmpty());
 			if (!this.getOffers().isEmpty()) {
 				if (!this.level.isClientSide) {
 					this.setTradingPlayer(playerIn);
