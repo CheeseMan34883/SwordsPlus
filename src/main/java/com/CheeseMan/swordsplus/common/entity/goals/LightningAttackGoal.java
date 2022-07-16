@@ -9,9 +9,11 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class LightningAttackGoal extends Goal{
 	WizardEntity wizard;
+	World worldIn = this.wizard.level;
 	LivingEntity entity = this.wizard.getTarget();
 	private int chargeTime;
 	
@@ -35,16 +37,17 @@ public class LightningAttackGoal extends Goal{
 	}
 	@Override
 	public void tick() {
-		if (this.entity.distanceToSqr(this.wizard) < 4096.0D && this.wizard.canSee(entity)) {
+		
+		if (this.wizard.canSee(entity)) {
 			this.chargeTime++;
 		}
-		if (this.chargeTime == 15 && this.wizard.level.isNight()) {
+		if (this.chargeTime == 15 && worldIn.isNight() && worldIn instanceof ServerWorld) {
 			BlockPos pos = this.entity.blockPosition();
-			if (this.wizard.level.canSeeSky(pos)) {
-				 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(this.wizard.level);
+			if (worldIn.canSeeSky(pos)) {
+				 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(worldIn);
 				 lightningboltentity.moveTo(Vector3d.atBottomCenterOf(pos));
-		         this.wizard.level.addFreshEntity(lightningboltentity);
-		         this.chargeTime = -20;
+		         worldIn.addFreshEntity(lightningboltentity);
+		         this.chargeTime = -15;
 			}
 		}
 		else if(this.chargeTime > 0) {

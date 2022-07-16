@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
+import com.CheeseMan.swordsplus.common.entity.goals.LightningAttackGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
@@ -58,7 +59,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -80,7 +80,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 			DataSerializers.BLOCK_POS);
 
 	public static AttributeModifierMap.MutableAttribute setAttributes() {
-		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.ATTACK_DAMAGE, 15.0D)
+		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 50.0D).add(Attributes.ATTACK_DAMAGE, 15.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.35D).add(Attributes.FOLLOW_RANGE, 25.0D);
 	}
 	
@@ -245,7 +245,9 @@ public class WizardEntity extends AbstractVillagerEntity {
 		else if(p_70097_1_ == DamageSource.MAGIC) {
 			return false;
 		}
-		
+		else if (p_70097_1_ == DamageSource.WITHER) {
+			return false;
+		}
 		
 		else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
 				&& p_70097_1_.getEntity() instanceof PlayerEntity) {
