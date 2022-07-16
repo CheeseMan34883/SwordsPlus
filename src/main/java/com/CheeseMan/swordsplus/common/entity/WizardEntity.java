@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
+import com.CheeseMan.swordsplus.common.entity.goals.LookAroundGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
@@ -26,7 +27,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TradeWithPlayerGoal;
@@ -36,7 +36,6 @@ import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractFireballEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -61,50 +60,35 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class WizardEntity extends AbstractVillagerEntity {
-	
-	
+
 	public static final DataParameter<Boolean> DATA_IS_CHARGING = EntityDataManager.defineId(WizardEntity.class,
 			DataSerializers.BOOLEAN);
 	public int explosionPower = 1;
 	public static final Int2ObjectMap<VillagerTrades.ITrade[]> WIZARD_TRADES = toIntMap(ImmutableMap.of(1,
 			new VillagerTrades.ITrade[] {
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.RAPID_SWORD.get(), 4, 1, 3, 6, 0.2f),
-<<<<<<< Updated upstream
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) },
 			2, new VillagerTrades.ITrade[]{
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.COPPER_SWORD.get(), 4, 1, 3, 6, 0.2f),
 			}));
 
-=======
-					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) }));
-	
-	Vector3d vector3d = this.getViewVector(1.0F);
-    double d2 = this.getTarget().getX() - (this.getX() + vector3d.x * 4.0D);
-    double d3 = this.getTarget().getY(0.5D) - (0.5D + this.getY(0.5D));
-    double d4 = this.getTarget().getZ() - (this.getZ() + vector3d.z * 4.0D);
-    
-    public AbstractFireballEntity fireballentity = new FireballEntity(this.level, this, d2, d3, d4);
-    
-					
->>>>>>> Stashed changes
 	public static final DataParameter<BlockPos> TOWER = EntityDataManager.defineId(WizardEntity.class,
 			DataSerializers.BLOCK_POS);
 
 	public static AttributeModifierMap.MutableAttribute setAttributes() {
 		return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.ATTACK_DAMAGE, 15.0D)
-				.add(Attributes.MOVEMENT_SPEED, 0.35D).add(Attributes.FOLLOW_RANGE, 25.0D);
+				.add(Attributes.MOVEMENT_SPEED, 1D).add(Attributes.FOLLOW_RANGE, 25.0D);
 	}
 	
 	public WizardEntity(EntityType<? extends AbstractVillagerEntity> p_i50185_1_, World p_i50185_2_) {
 		super(p_i50185_1_, p_i50185_2_);
 		this.forcedLoading = true;
 	}
-	
-	
-	
-	
+
 	@Override
 	protected int getExperienceReward(PlayerEntity p_70693_1_) {
 		return 0;
@@ -161,9 +145,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 
 		}
 	}
-	
-	
-	
+
 	@Override
 	protected ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
 		ItemStack stack = playerIn.getItemInHand(handIn);
@@ -184,8 +166,6 @@ public class WizardEntity extends AbstractVillagerEntity {
 			return super.mobInteract(playerIn, handIn);
 		}
 	}
-	
-	
 
 	@Override
 	public void addAdditionalSaveData(CompoundNBT nbt) {
@@ -242,7 +222,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 //		this.goalSelector.addGoal(0,
 //				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE),
 //						SoundEvents.GENERIC_DRINK, wizard -> wizard.isOnFire()));
-		this.goalSelector.addGoal(0, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(7, new LookAroundGoal(this));
 		//this.goalSelector.addGoal(0, new UseWaterBucketGoal(this, SoundEvents.FISHING_BOBBER_SPLASH));
 		
 		this.goalSelector.addGoal(0,
@@ -254,48 +234,25 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
-<<<<<<< Updated upstream
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this));
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-=======
-
-		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1));
-		//this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-		this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-
-		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1F));
-		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
-
->>>>>>> Stashed changes
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 
 	}
-	
 
 	@Override
 	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
 		if (this.isInvulnerableTo(p_70097_1_)) {
 			return false;
-			
-		}
-		else if(p_70097_1_ == DamageSource.fireball(fireballentity, this)) {
-			return false;
-		}
-		else if(p_70097_1_ == DamageSource.MAGIC) {
-			return false;
-		}
-		
-		else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
+		} else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
 				&& p_70097_1_.getEntity() instanceof PlayerEntity) {
 			super.hurt(p_70097_1_, 1000.0F);
 			return true;
-		} 
-		else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
+		} else if (p_70097_1_.getDirectEntity() instanceof FireballEntity
 				&& p_70097_1_.getEntity() instanceof LivingEntity) {
 			super.hurt(p_70097_1_, p_70097_2_);
 			return true;
-		} 
-		else {
+		} else {
 			return super.hurt(p_70097_1_, p_70097_2_);
 		}
 	}
