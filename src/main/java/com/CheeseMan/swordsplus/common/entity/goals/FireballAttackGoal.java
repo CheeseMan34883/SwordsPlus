@@ -42,7 +42,7 @@ public class FireballAttackGoal extends Goal{
             World world = this.wizard.level;
             ++this.chargeTime;
             if (this.chargeTime == 5 && !this.wizard.isSilent()) {
-               //world.levelEvent((PlayerEntity)null, 1015, this.wizard.blockPosition(), 0);
+               world.levelEvent((PlayerEntity)null, 1015, this.wizard.blockPosition(), 0);
             }
             if (this.chargeTime == 10) {
                 double d1 = 4.0D;

@@ -31,6 +31,11 @@ public class MeleeWizardGoal extends Goal{
 		if (livingentity == null) {
             return false;
         }
+		else if() {
+			
+			
+			
+		}
 		else if (!livingentity.isAlive()) {
             return false;
          } 

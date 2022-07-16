@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import com.CheeseMan.swordsplus.common.entity.goals.FireballAttackGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.LookAroundGoal;
 import com.CheeseMan.swordsplus.common.entity.goals.MeleeWizardGoal;
-import com.CheeseMan.swordsplus.common.entity.goals.StayCloseToTower;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.google.common.collect.ImmutableMap;
 
@@ -149,14 +148,16 @@ public class WizardEntity extends AbstractVillagerEntity {
 			if (handIn == Hand.MAIN_HAND) {
 				playerIn.awardStat(Stats.TALKED_TO_VILLAGER);
 			}
-			if (!this.getOffers().isEmpty()) {
+			if (this.getOffers().isEmpty()) {
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
+			} else {
 				if (!this.level.isClientSide) {
 					this.setTradingPlayer(playerIn);
 					this.openTradingScreen(playerIn, this.getDisplayName(), 1);
 				}
 
+				return ActionResultType.sidedSuccess(this.level.isClientSide);
 			}
-			return ActionResultType.sidedSuccess(this.level.isClientSide);
 		} else {
 			return super.mobInteract(playerIn, handIn);
 		}
@@ -189,6 +190,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 		return false;
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	public boolean isCharging() {
 		return this.entityData.get(DATA_IS_CHARGING);
 	}
@@ -225,12 +227,12 @@ public class WizardEntity extends AbstractVillagerEntity {
 						SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
-		//this.goalSelector.addGoal(2, new MoveToGoal(this, 2.0D, 0.35D));
+		this.goalSelector.addGoal(2, new MoveToGoal(this, 2.0D, 0.35D));
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this));
-		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
+		//this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 
 	}
