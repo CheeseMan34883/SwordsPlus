@@ -70,7 +70,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 	public static final Int2ObjectMap<VillagerTrades.ITrade[]> WIZARD_TRADES = toIntMap(ImmutableMap.of(1,
 			new VillagerTrades.ITrade[] {
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.RAPID_SWORD.get(), 4, 1, 3, 6, 0.2f),
-					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 0, 0, 0, 0, 0.1f) },
+					new WizardEntity.ItemsForValuablesTrade(ItemInit.OBSIDIAN_TIP.get(), 3, 3, 2, 4, 0.1f) },
 			2, new VillagerTrades.ITrade[]{
 					new WizardEntity.ItemsForValuablesTrade(ItemInit.CARBON_STEEL_SWORD.get(), 4, 1, 3, 6, 0.2f),
 			}));

@@ -6,6 +6,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -13,8 +15,6 @@ import net.minecraft.world.server.ServerWorld;
 
 public class LightningAttackGoal extends Goal{
 	WizardEntity wizard;
-	World worldIn = this.wizard.level;
-	LivingEntity entity = this.wizard.getTarget();
 	private int chargeTime;
 	
 	public LightningAttackGoal(WizardEntity wizard) {
@@ -23,7 +23,7 @@ public class LightningAttackGoal extends Goal{
 
 	@Override
 	public boolean canUse() {
-		return this.entity != null;
+		return this.wizard.getTarget() != null;
 	}	
 	
 	@Override
@@ -37,22 +37,35 @@ public class LightningAttackGoal extends Goal{
 	}
 	@Override
 	public void tick() {
-		
-		if (this.wizard.canSee(entity)) {
-			this.chargeTime++;
-		}
-		if (this.chargeTime == 15 && worldIn.isNight() && worldIn instanceof ServerWorld) {
-			BlockPos pos = this.entity.blockPosition();
-			if (worldIn.canSeeSky(pos)) {
-				 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(worldIn);
-				 lightningboltentity.moveTo(Vector3d.atBottomCenterOf(pos));
-		         worldIn.addFreshEntity(lightningboltentity);
-		         this.chargeTime = -15;
-			}
-		}
-		else if(this.chargeTime > 0) {
-			this.chargeTime--;
-		}
-		this.wizard.setCharging(this.chargeTime > 10);
+		LivingEntity entity = this.wizard.getTarget();
+		double d0 = 64.0D;
+		if (entity.distanceToSqr(this.wizard) < 4096.0D && this.wizard.canSee(entity)) {
+            World world = this.wizard.level;
+            ++this.chargeTime;
+            if (this.chargeTime == 5 && !this.wizard.isSilent()) {
+               
+            }
+            if (this.chargeTime == 10) {
+                double d1 = 4.0D;
+                Vector3d vector3d = this.wizard.getViewVector(1.0F);
+                double d2 = entity.getX() - (this.wizard.getX() + vector3d.x * 4.0D);
+                double d3 = entity.getY(0.5D) - (0.5D + this.wizard.getY(0.5D));
+                double d4 = entity.getZ() - (this.wizard.getZ() + vector3d.z * 4.0D);
+                if (!this.wizard.isSilent()) {
+                   world.levelEvent((PlayerEntity)null, 1016, this.wizard.blockPosition(), 0);
+                }
+
+                LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
+                
+                
+                lightningboltentity.setPos(this.wizard.getX() + vector3d.x * 4.0D, this.wizard.getY(0.5D) + 0.5D, lightningboltentity.getZ() + vector3d.z * 4.0D);
+                world.addFreshEntity(lightningboltentity);
+                this.chargeTime = -20;
+             }
+          } else if (this.chargeTime > 0) {
+             --this.chargeTime;
+          }
+
+          this.wizard.setCharging(this.chargeTime > 10);
 	}
 }
