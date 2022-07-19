@@ -224,14 +224,13 @@ public class WizardEntity extends AbstractVillagerEntity {
 		this.goalSelector.addGoal(0,
 				new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRONG_HEALING),
 						SoundEvents.GENERIC_DRINK, wizard -> (wizard.getHealth() < wizard.getMaxHealth())));
-		//this.goalSelector.addGoal(2, new LightningAttackGoal(this));
+		this.goalSelector.addGoal(2, new LightningAttackGoal(this));
 		this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
 		this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
 		this.goalSelector.addGoal(2, new FireballAttackGoal(this));
 		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, true));
 		this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(2, new MeleeWizardGoal(this, true, 1.0F));
-		
 		this.goalSelector.addGoal(8, new StayCloseToTower(this, 0.35D));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
 		this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -265,6 +264,10 @@ public class WizardEntity extends AbstractVillagerEntity {
 	@Override
 	public int getMaxSpawnClusterSize() {
 		return 1;
+	}
+
+	public float getLightningDamage(){
+		return 10f;
 	}
 
 	@Override
