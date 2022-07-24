@@ -9,6 +9,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -22,9 +23,11 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -106,8 +109,6 @@ public class SunSpearEntity extends AbstractArrowEntity{
 		      if (entity instanceof LivingEntity) {
 		         LivingEntity livingentity = (LivingEntity)entity;
 		         f += EnchantmentHelper.getDamageBonus(this.SunSpearItem, livingentity.getMobType());
-		         livingentity.addEffect(new EffectInstance(Effects.BLINDNESS, 60, 2));
-		         
 		         
 		      }
 
@@ -130,7 +131,22 @@ public class SunSpearEntity extends AbstractArrowEntity{
 		            this.doPostHurtEffects(livingentity1);
 		         }
 		      }
-		      this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));  
+		      this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
+		      float f1 = 1.0F;
+		      if (this.level instanceof ServerWorld && this.level.isThundering() && EnchantmentHelper.hasChanneling(this.SunSpearItem)) {
+		         BlockPos blockpos = entity.blockPosition();
+		         if (this.level.canSeeSky(blockpos)) {
+		            LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(this.level);
+		            lightningboltentity.moveTo(Vector3d.atBottomCenterOf(blockpos));
+		            lightningboltentity.setCause(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
+		            this.level.addFreshEntity(lightningboltentity);
+		            soundevent = SoundEvents.TRIDENT_THUNDER;
+		            f1 = 5.0F;
+		         }
+		      }
+
+		      this.playSound(soundevent, f1, 1.0F);
+
 
 	   }
 	   

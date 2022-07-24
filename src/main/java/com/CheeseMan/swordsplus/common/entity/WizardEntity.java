@@ -267,7 +267,7 @@ public class WizardEntity extends AbstractVillagerEntity {
 	}
 
 	public float getLightningDamage(){
-		return 10f;
+		return 22f;
 	}
 
 	@Override
