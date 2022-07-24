@@ -102,7 +102,6 @@ public class FireballAttackGoal extends Goal{
 
                 LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
                 lightningboltentity.setDamage(wizard.getLightningDamage());
-
                 lightningboltentity.setPos(this.wizard.getX() + vector3d.x * 4.0D, this.wizard.getY(0.5D) + 0.5D, lightningboltentity.getZ() + vector3d.z * 4.0D);
                 world.addFreshEntity(lightningboltentity);
                 this.chargeTime = -20;
