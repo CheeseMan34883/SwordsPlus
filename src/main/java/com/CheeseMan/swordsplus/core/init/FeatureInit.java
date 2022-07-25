@@ -1,20 +1,13 @@
 package com.CheeseMan.swordsplus.core.init;
 
-import com.CheeseMan.swordsplus.SwordsPlus;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.template.RuleTest;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class FeatureInit {
 

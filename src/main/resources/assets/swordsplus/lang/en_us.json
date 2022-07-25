@@ -12,12 +12,10 @@
 	"item.swordsplus.copper_sword": "Copper Sword",
 	"item.swordsplus.foil": "Foil",
 	"item.swordsplus.iron_handle": "Iron Handle",
-	"item.swordsplus.obi_spear": "Obi Spear",
 	"item.swordsplus.obsidian_tip": "Obsidian Tip",
 	"item.swordsplus.qcarbon": "Q-Carbon",
 	"item.swordsplus.rapid_sword": "Rapid Sword",
 	"item.swordsplus.raw_vanadium": "Raw Vanadium",
-	"item.swordsplus.sun_spear": "Sun Spear",
 	"item.swordsplus.tin_ingot": "Tin Ingot",
 	"item.swordsplus.tin_sword": "Tin Sword",
 	"item.swordsplus.trumpet": "Trumpet",
@@ -46,8 +44,6 @@
 	"block.swordsplus.vanadium_block": "Vanadium Block",
 	"block.swordsplus.wizard_pedestal": "Wizard's Pedestal",
 	
-	"entity.swordsplus.obi_spear": "Obi Spear",
-	"entity.swordsplus.sun_spear": "Sun Spear",
 	"entity.swordsplus.wizard": "Wizard",
 	"itemGroup.swordsplus": "Swords+",
 

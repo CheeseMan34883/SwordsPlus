@@ -2,14 +2,11 @@ package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.items.Battery;
-import com.CheeseMan.swordsplus.common.items.ObiSpear;
-import com.CheeseMan.swordsplus.common.items.SunSpear;
 import com.CheeseMan.swordsplus.common.items.Trumpet;
 import com.CheeseMan.swordsplus.common.material.ModToolMaterial;
 import com.CheeseMan.swordsplus.core.itemgroup.SwordsPlusItemGroup;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.Properties;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -106,8 +103,5 @@ public class ItemInit {
 
 	// Spears
 
-	public static final RegistryObject<Item> OBI_SPEAR = ITEMS.register("obi_spear", ObiSpear::new);
-
-	public static final RegistryObject<Item> SUN_SPEAR = ITEMS.register("sun_spear", SunSpear::new);
-
+	
 }
