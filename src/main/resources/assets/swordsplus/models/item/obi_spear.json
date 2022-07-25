@@ -1,6 +1,6 @@
 {
-	"parent": "item/handheld",
-	"textures": {
-		"layer0": "swordsplus:items/obi_spear"
-	}
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "swordsplus:obi_spear"
+  }
 }
