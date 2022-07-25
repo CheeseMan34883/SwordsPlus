@@ -41,8 +41,8 @@ public class FireballAttackGoal extends Goal{
 	
 	@Override
 	public void tick() {
-            
-		fireballTick();
+        if(!(this.wizard.getTarget().distanceToSqr(wizard) < 9.0D))    
+        	fireballTick();
 	}
 
     private void fireballTick(){
