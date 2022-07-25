@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.item;
+package com.CheeseMan.swordsplus.client.entity.model;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

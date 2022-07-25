@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer;
 
 import com.google.common.collect.Sets;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -22,7 +22,7 @@ public class SPItemSTackRenderer extends ItemStackTileEntityRenderer {
         return INSTANCE;
     }
 
-    public static final Set<IItemModelProvider> MODLES = Sets.newHashSet(new IgnitedSpearRenderer());
+    public static final Set<IItemModelProvider> MODLES = Sets.newHashSet(new ObiSpearRenderer());
 
     @Override
     public void renderByItem(ItemStack stack, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {

@@ -24,6 +24,7 @@
 	"item.swordsplus.vanadium_ingot": "Vanadium Ingot",
 	"item.swordsplus.vanadium_sword": "Vanadium Sword",
 	"item.swordsplus.wizard_spawn_egg": "Wizard Spawn Egg",
+	"item.swordsplus.obi_spear": "Obi Spear",
 	
 	"block.swordsplus.aluminum_block": "Aluminum Block",
 	"block.swordsplus.aluminum_ore": "Aluminum Ore",
@@ -45,6 +46,7 @@
 	"block.swordsplus.wizard_pedestal": "Wizard's Pedestal",
 	
 	"entity.swordsplus.wizard": "Wizard",
+	"entity.swordsplus.obi_spear": "Obi Spear",
 	"itemGroup.swordsplus": "Swords+",
 
 	"tooltip.swordsplus.battery.energy": "Energy: %s/%d"

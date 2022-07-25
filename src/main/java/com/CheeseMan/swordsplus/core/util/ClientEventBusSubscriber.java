@@ -1,6 +1,7 @@
 package com.CheeseMan.swordsplus.core.util;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
+import com.CheeseMan.swordsplus.client.entity.renderer.ObiSpearEntityRenderer;
 import com.CheeseMan.swordsplus.client.entity.renderer.WizardRenderer;
 import com.CheeseMan.swordsplus.client.screen.ExcimerLaserScreen;
 import com.CheeseMan.swordsplus.core.init.BlockInit;
@@ -26,6 +27,7 @@ public class ClientEventBusSubscriber {
 		
 		
 		RenderTypeLookup.setRenderLayer(BlockInit.WIZARD_PEDESTAL.get(), RenderType.cutout());
+		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.OBI_SPEAR.get(), ObiSpearEntityRenderer::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.WIZARD.get(), WizardRenderer::new);
 		
 	}

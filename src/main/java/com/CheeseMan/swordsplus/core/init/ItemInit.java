@@ -1,8 +1,7 @@
 package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
-import com.CheeseMan.swordsplus.client.renderer.SPItemSTackRenderer;
-import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
+import com.CheeseMan.swordsplus.client.entity.renderer.SPItemSTackRenderer;
 import com.CheeseMan.swordsplus.common.items.Battery;
 import com.CheeseMan.swordsplus.common.items.SpearItem;
 import com.CheeseMan.swordsplus.common.items.Trumpet;
@@ -62,10 +61,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> OBSIDIAN_TIP = ITEMS.register("obsidian_tip",
 			() -> new Item(new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
 
-	 public static final RegistryObject<SpawnEggItemInit> WIZARD_SPAWN_EGG = ITEMS.register("wizard_spawn_egg",
-	            () -> new SpawnEggItemInit(EntityTypesInit.WIZARD, 0x991f46, 0x174042,
-	                    new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
-	 
+	public static final RegistryObject<SpawnEggItemInit> WIZARD_SPAWN_EGG = ITEMS.register("wizard_spawn_egg",
+			() -> new SpawnEggItemInit(EntityTypesInit.WIZARD, 0x991f46, 0x174042,
+					new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
 
 	// Swords
 	public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword",
@@ -105,6 +103,8 @@ public class ItemInit {
 					new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)));
 
 	// Spears
-	public static final RegistryObject<SpearItem> IGNITED_SPEAR = ITEMS.register("ignited_spear", () -> new SpearItem(ModToolMaterial.OBI_SPEAR, new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS).setISTER(() -> SPItemSTackRenderer::getInstance)));
-	
+	public static final RegistryObject<SpearItem> OBI_SPEAR = ITEMS.register("obi_spear",
+			() -> new SpearItem(ModToolMaterial.OBI_SPEAR, new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)
+					.setISTER(() -> SPItemSTackRenderer::getInstance)));
+
 }

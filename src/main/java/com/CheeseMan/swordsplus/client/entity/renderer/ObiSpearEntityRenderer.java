@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
@@ -12,10 +12,10 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.ResourceLocation;
 
-public class SpearEntityRenderer extends EntityRenderer<ObiSpearEntity> {
+public class ObiSpearEntityRenderer extends EntityRenderer<ObiSpearEntity> {
 
     private final ItemRenderer itemRender;
-    public SpearEntityRenderer(EntityRendererManager p_i46179_1_) {
+    public ObiSpearEntityRenderer(EntityRendererManager p_i46179_1_) {
         super(p_i46179_1_);
         this.itemRender = Minecraft.getInstance().getItemRenderer();
     }
@@ -30,6 +30,6 @@ public class SpearEntityRenderer extends EntityRenderer<ObiSpearEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(ObiSpearEntity p_110775_1_) {
-        return SwordsPlus.modLoc("items/ignited_spear");
+        return SwordsPlus.modLoc("textures/entity/obi_spear/obi_spear");
     }
 }

@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 
 import net.minecraft.item.IItemTier;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ModToolMaterial implements IItemTier {
@@ -17,7 +18,7 @@ public enum ModToolMaterial implements IItemTier {
 	RAPID_TOOL(3, 307, 8f, 5.25f, 10, () -> Ingredient.of(ItemInit.QCARBON.get())),
 	TITANIUM_TOOL(3, 1208, 4.5f, 5.75f, 13, () -> Ingredient.of(ItemInit.TITANIUM_INGOT.get())),
 	ALUMINUM_TOOL(2, 118, 6.0F, 3.0f, 16, () -> Ingredient.of(ItemInit.ALUMINUM_INGOT.get())),
-	OBI_SPEAR(2, 500, 2f, 5f, 13, () -> Ingredient.of(ItemInit.COPPER_INGOT.get())),
+	OBI_SPEAR(3, 1200, 2f, 12.0f, 13, () -> Ingredient.of(Items.OBSIDIAN)),
 	VANADIUM_TOOL(3, 1098, 5.0f, 6.0f, 15, () -> Ingredient.of(ItemInit.VANADIUM_INGOT.get()));
 	
 	private final int harvestLevel;

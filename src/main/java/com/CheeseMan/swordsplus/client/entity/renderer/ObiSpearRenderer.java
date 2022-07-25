@@ -1,10 +1,11 @@
-package com.CheeseMan.swordsplus.client.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
-import com.CheeseMan.swordsplus.client.item.ObiSpearModel;
+import com.CheeseMan.swordsplus.client.entity.model.ObiSpearModel;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
@@ -14,11 +15,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.function.Supplier;
+public class ObiSpearRenderer implements SPItemSTackRenderer.IItemModelProvider {
 
-public class IgnitedSpearRenderer implements SPItemSTackRenderer.IItemModelProvider {
-
-    protected static final ResourceLocation TEXTURE = SwordsPlus.modLoc("items/ignited_spear");
+    protected static final ResourceLocation TEXTURE = SwordsPlus.modLoc("textures/entity/obi_spear/obi_spear");
 
     @Override
     public void render(ItemStack stack, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
@@ -35,7 +34,7 @@ public class IgnitedSpearRenderer implements SPItemSTackRenderer.IItemModelProvi
 
     @Override
     public Item getRepresentiveItem() {
-        return ItemInit.IGNITED_SPEAR.get();
+        return ItemInit.OBI_SPEAR.get();
     }
 
     @Override
