@@ -7,6 +7,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import com.CheeseMan.swordsplus.client.renderer.SPItemSTackRenderer;
+import com.CheeseMan.swordsplus.client.renderer.SpearEntityRenderer;
+import net.minecraft.entity.EntityType;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -91,6 +97,8 @@ public class SwordsPlus {
 		StructureInit.STRUCTURES.register(bus);
 		
 		bus.addListener(this::setup);
+        bus.addListener(this::textureStitch);
+        bus.addListener(this::clientSetup);
 		ModSoundEvents.register(bus);
 		
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -100,6 +108,10 @@ public class SwordsPlus {
 		forgeBus.register(this);
 
 	}
+
+    private void clientSetup(FMLClientSetupEvent event){
+        RenderingRegistry.registerEntityRenderingHandler(EntityTypesInit.OBI_SPEAR.get(), SpearEntityRenderer::new);
+    }
 	
 	
     public void setup(final FMLCommonSetupEvent event)
@@ -110,6 +122,10 @@ public class SwordsPlus {
             
             //VillagerInit.registerPOIs();
         });
+    }
+
+    private void textureStitch(TextureStitchEvent.Pre event){
+        SPItemSTackRenderer.MODLES.forEach(r -> event.addSprite(r.getTextureLocation()));
     }
     
   

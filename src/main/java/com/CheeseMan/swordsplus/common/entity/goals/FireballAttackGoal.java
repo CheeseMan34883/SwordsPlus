@@ -50,6 +50,7 @@ public class FireballAttackGoal extends Goal{
 	}
 
     private void fireballTick(){
+        System.out.println("fireball tick");
         LivingEntity entity = this.wizard.getTarget();
         double d0 = 64.0D;
         if (entity.distanceToSqr(this.wizard) < 4096.0D && this.wizard.canSee(entity)) {
@@ -82,6 +83,7 @@ public class FireballAttackGoal extends Goal{
     }
 
     public void lightningTick() {
+        System.out.println("lightning tick");
         LivingEntity entity = this.wizard.getTarget();
         double d0 = 64.0D;
         if (entity.distanceToSqr(this.wizard) < 4096.0D && this.wizard.canSee(entity)) {

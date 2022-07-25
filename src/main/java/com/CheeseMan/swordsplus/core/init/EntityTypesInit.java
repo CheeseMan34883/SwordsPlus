@@ -1,6 +1,7 @@
 package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
+import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
 import com.CheeseMan.swordsplus.common.entity.WizardEntity;
 
 import net.minecraft.entity.EntityClassification;
@@ -20,5 +21,7 @@ public class EntityTypesInit {
 			() -> EntityType.Builder.<WizardEntity>of(WizardEntity::new, EntityClassification.CREATURE).fireImmune()
 					.sized(0.6f, 1.95f).clientTrackingRange(10)
 					.build(new ResourceLocation(SwordsPlus.MOD_ID, "wizard").toString()));
+
+	public static final RegistryObject<EntityType<ObiSpearEntity>> OBI_SPEAR = ENTITY_TYPES.register("obi_spear", () -> EntityType.Builder.<ObiSpearEntity>of(ObiSpearEntity::new,EntityClassification.MISC).sized(0.5f, 0.5f).clientTrackingRange(4).build(new ResourceLocation(SwordsPlus.MOD_ID, "obi_spear").toString()));
 
 }
