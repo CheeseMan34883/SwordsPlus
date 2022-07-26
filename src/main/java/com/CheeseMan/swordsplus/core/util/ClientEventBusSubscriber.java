@@ -1,8 +1,8 @@
 package com.CheeseMan.swordsplus.core.util;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
-import com.CheeseMan.swordsplus.client.entity.renderer.ObiSpearEntityRenderer;
-import com.CheeseMan.swordsplus.client.entity.renderer.WizardRenderer;
+import com.CheeseMan.swordsplus.client.entity.renderer.entity.ObiSpearEntityRenderer;
+import com.CheeseMan.swordsplus.client.entity.renderer.entity.WizardRenderer;
 import com.CheeseMan.swordsplus.client.screen.ExcimerLaserScreen;
 import com.CheeseMan.swordsplus.core.init.BlockInit;
 import com.CheeseMan.swordsplus.core.init.ContainerTypesInit;

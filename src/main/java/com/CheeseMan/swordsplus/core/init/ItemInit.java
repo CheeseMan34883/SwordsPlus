@@ -1,7 +1,7 @@
 package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
-import com.CheeseMan.swordsplus.client.entity.renderer.SPItemSTackRenderer;
+import com.CheeseMan.swordsplus.client.entity.renderer.item.SPItemSTackRenderer;
 import com.CheeseMan.swordsplus.common.items.Battery;
 import com.CheeseMan.swordsplus.common.items.SpearItem;
 import com.CheeseMan.swordsplus.common.items.Trumpet;

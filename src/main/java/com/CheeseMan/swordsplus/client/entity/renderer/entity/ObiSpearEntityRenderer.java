@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.entity.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer.entity;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.common.entity.ObiSpearEntity;
@@ -30,6 +30,6 @@ public class ObiSpearEntityRenderer extends EntityRenderer<ObiSpearEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(ObiSpearEntity p_110775_1_) {
-        return SwordsPlus.modLoc("textures/entity/obi_spear/obi_spear");
+        return SwordsPlus.modLoc("textures/entity/obi_spear/obi_spear.png");
     }
 }

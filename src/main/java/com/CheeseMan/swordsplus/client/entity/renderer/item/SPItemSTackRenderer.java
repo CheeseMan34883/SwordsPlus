@@ -1,6 +1,5 @@
-package com.CheeseMan.swordsplus.client.entity.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer.item;
 
-import com.CheeseMan.swordsplus.client.renderer.ObiSpearRenderer;
 import com.google.common.collect.Sets;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

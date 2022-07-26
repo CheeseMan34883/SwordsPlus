@@ -1,4 +1,4 @@
-package com.CheeseMan.swordsplus.client.entity.renderer;
+package com.CheeseMan.swordsplus.client.entity.renderer.entity;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.client.entity.model.Wizard;

@@ -14,8 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.CheeseMan.swordsplus.client.entity.renderer.SPItemSTackRenderer;
-import com.CheeseMan.swordsplus.client.entity.renderer.ObiSpearEntityRenderer;
+import com.CheeseMan.swordsplus.client.entity.renderer.entity.ObiSpearEntityRenderer;
+import com.CheeseMan.swordsplus.client.entity.renderer.item.SPItemSTackRenderer;
 import com.CheeseMan.swordsplus.core.init.BlockInit;
 import com.CheeseMan.swordsplus.core.init.ContainerTypesInit;
 import com.CheeseMan.swordsplus.core.init.EntityTypesInit;
