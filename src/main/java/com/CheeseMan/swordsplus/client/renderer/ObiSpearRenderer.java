@@ -1,7 +1,8 @@
-package com.CheeseMan.swordsplus.client.entity.renderer;
+package com.CheeseMan.swordsplus.client.renderer;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.client.entity.model.ObiSpearModel;
+import com.CheeseMan.swordsplus.client.entity.renderer.SPItemSTackRenderer;
 import com.CheeseMan.swordsplus.core.init.ItemInit;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -17,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ObiSpearRenderer implements SPItemSTackRenderer.IItemModelProvider {
 
-    protected static final ResourceLocation TEXTURE = SwordsPlus.modLoc("textures/entity/obi_spear/obi_spear");
+    protected static final ResourceLocation TEXTURE = SwordsPlus.modLoc("items/obi_spear");
 
     @Override
     public void render(ItemStack stack, ItemCameraTransforms.TransformType transformType, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
