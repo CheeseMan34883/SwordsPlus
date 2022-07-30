@@ -64,6 +64,7 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> WIZARD_PEDESTAL = BLOCKS.register("wizard_pedestal", () -> new WizardPedestal());
 					
+	
 
 	// Ores
 	public static final RegistryObject<Block> CARBON_STEEL_ORE = BLOCKS.register("carbon_steel_ore",

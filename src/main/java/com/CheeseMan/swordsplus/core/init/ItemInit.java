@@ -2,6 +2,7 @@ package com.CheeseMan.swordsplus.core.init;
 
 import com.CheeseMan.swordsplus.SwordsPlus;
 import com.CheeseMan.swordsplus.client.entity.renderer.item.SPItemSTackRenderer;
+import com.CheeseMan.swordsplus.common.items.BagItem;
 import com.CheeseMan.swordsplus.common.items.Battery;
 import com.CheeseMan.swordsplus.common.items.SpearItem;
 import com.CheeseMan.swordsplus.common.items.Trumpet;
@@ -106,5 +107,8 @@ public class ItemInit {
 	public static final RegistryObject<SpearItem> OBI_SPEAR = ITEMS.register("obi_spear",
 			() -> new SpearItem(ModToolMaterial.OBI_SPEAR, new Item.Properties().tab(SwordsPlusItemGroup.SWORDSPLUS)
 					.setISTER(() -> SPItemSTackRenderer::getInstance)));
+	
+	//Bags
+	public static final RegistryObject<BagItem> EMPTY_BAG = ITEMS.register("empty_bag", BagItem::new);
 
 }
